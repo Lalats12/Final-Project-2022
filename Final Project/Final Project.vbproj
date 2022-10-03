@@ -92,9 +92,12 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\badminton_database.mdf" />
+    <Content Include="App_Data\badminton_database.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="App_Data\badminton_database_log.ldf">
       <DependentUpon>badminton_database.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="BookingPage.aspx" />
     <Content Include="Log_In_Page.aspx" />
