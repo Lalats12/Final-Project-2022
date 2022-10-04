@@ -19,15 +19,18 @@
             border-collapse:collapse;
         }
         tr:not(:last-child){
-            border: 1px solid black
+            border-bottom: 1px solid black;
+        }
+        td{
+            border-right: 1px solid black;
         }
         .auto-style2 {
             text-align: left;
         }
         .auto-style3 {
             position: absolute;
-            left: 1145px;
-            top: 6px;
+            left: 973px;
+            top: 10px;
         }
     </style>
 </head>
@@ -40,14 +43,15 @@
             <h1>Venue</h1>
             <p>Current status:<asp:Label ID="lblVenue" runat="server" Text="Label"></asp:Label> </p>
         </div>
+        <div id="book_venue">
+            <asp:Table ID="user_booked_tables" runat="server"></asp:Table>
+        </div>
         <div id="table_venue">
-            <asp:Table ID="Table1" runat="server" CssClass="tables">
+            <asp:Table ID="available_venue" runat="server" CssClass="tables">
                 <asp:TableRow runat="server">
-                    <asp:TableCell ID="th_id" runat="server">ID</asp:TableCell>
                     <asp:TableCell ID="th_name" runat="server">School Name</asp:TableCell>
                     <asp:TableCell ID="th_school" runat="server">School Location</asp:TableCell>
-                    <asp:TableCell ID="th_curr" runat="server">Currently Available <br /> courts</asp:TableCell>
-                    <asp:TableCell ID="TableCell1" runat="server">Schedules</asp:TableCell>
+                    <asp:TableCell ID="th_curr" runat="server">Courts</asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
             <asp:Button ID="btn_booking" runat="server" Text="Button" />

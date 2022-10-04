@@ -50,22 +50,22 @@ Partial Public Class WebForm1
     Protected WithEvents lblVenue As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Table1 control.
+    '''user_booked_tables control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Table1 As Global.System.Web.UI.WebControls.Table
+    Protected WithEvents user_booked_tables As Global.System.Web.UI.WebControls.Table
 
     '''<summary>
-    '''th_id control.
+    '''available_venue control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents th_id As Global.System.Web.UI.WebControls.TableCell
+    Protected WithEvents available_venue As Global.System.Web.UI.WebControls.Table
 
     '''<summary>
     '''th_name control.
@@ -93,15 +93,6 @@ Partial Public Class WebForm1
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents th_curr As Global.System.Web.UI.WebControls.TableCell
-
-    '''<summary>
-    '''TableCell1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TableCell1 As Global.System.Web.UI.WebControls.TableCell
 
     '''<summary>
     '''btn_booking control.

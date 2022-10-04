@@ -25,6 +25,7 @@
              <h3>E-Mail:   <asp:TextBox ID="txt_email" runat="server"></asp:TextBox></h3>
              <h3>UserName: <asp:TextBox ID="txt_username" runat="server"></asp:TextBox></h3>
              <h3>Password: <asp:TextBox ID="txt_pass" runat="server"></asp:TextBox></h3>
+             <h3>Mobile Number: <asp:TextBox ID="txt_num" runat="server"></asp:TextBox></h3>
         </div>
         <asp:Button ID="btn_register" runat="server" Text="Register" />
         </div>

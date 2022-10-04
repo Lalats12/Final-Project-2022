@@ -9,6 +9,7 @@ Public Class WebForm1
 
     Dim conn As SqlConnection
     Dim loadVentureCmd As SqlCommand
+    Dim loadUserBookingCmd As SqlCommand
 
 
 
@@ -19,6 +20,9 @@ Public Class WebForm1
 
         Dim loadVentureSql As String = "SELECT * FROM Venues"
         loadVentureCmd = New SqlCommand(loadVentureSql, conn)
+
+        Dim loadUserBookingSql As String = "SELECT * FROM booking where user_id = @uid"
+        loadUserBookingCmd = New SqlCommand(loadUserBookingSql, conn)
 
         Dim adapter As SqlDataAdapter = New SqlDataAdapter(loadVentureCmd)
         Dim ds As DataSet = New DataSet()
@@ -41,17 +45,15 @@ Public Class WebForm1
                     Dim SchoolLocation As Integer = dr("school_location")
                     Dim SchoolAvailable As Integer = dr("school_available_courts")
                     numCourtsAvailable += SchoolAvailable
-                    Dim SchoolSchedule As String = dr("school_schedule")
                     Dim ven As TableCell = New TableCell
                     ven.Text = VenueId
+                    ven.Visible = False
                     Dim sch As TableCell = New TableCell
                     sch.Text = SchoolName
                     Dim loc As TableCell = New TableCell
                     loc.Text = SchoolLocation
                     Dim ava As TableCell = New TableCell
                     ava.Text = SchoolAvailable
-                    Dim sche As TableCell = New TableCell
-                    sche.Text = SchoolSchedule
                     Dim butt As HyperLink = New HyperLink
                     butt.Text = "Book"
                     butt.ID = SchoolTag
@@ -62,9 +64,8 @@ Public Class WebForm1
                     newRow.Cells.Add(sch)
                     newRow.Cells.Add(loc)
                     newRow.Cells.Add(ava)
-                    newRow.Cells.Add(sche)
                     newRow.Cells.Add(but)
-                    Table1.Rows.Add(newRow)
+                    available_venue.Rows.Add(newRow)
                 Next
                 lblVenue.Text = numCourtsAvailable
             End If

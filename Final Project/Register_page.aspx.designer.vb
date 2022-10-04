@@ -50,6 +50,15 @@ Partial Public Class Register_page
     Protected WithEvents txt_pass As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''txt_num control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_num As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''btn_register control.
     '''</summary>
     '''<remarks>
