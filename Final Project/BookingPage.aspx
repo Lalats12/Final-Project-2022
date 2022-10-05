@@ -12,21 +12,37 @@
         }
         .auto-style1 {
             height: 74px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="auto-style1">
-            <asp:DropDownList ID="DropDownList1" runat="server">
+            <h2>School Name</h2>
+            <asp:DropDownList ID="drp_school" runat="server">
             </asp:DropDownList>
             <br />
             <br />
-            &nbsp;Day&nbsp;&nbsp;&nbsp; Month&nbsp; Year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Hour Minute<br />
-            <asp:TextBox ID="TextBox1" runat="server" Width="22px"></asp:TextBox> &nbsp; - <asp:TextBox ID="TextBox2" runat="server" Width="22px"></asp:TextBox>
-        &nbsp;- <asp:TextBox ID="TextBox3" runat="server" Width="22px"></asp:TextBox>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="TextBox4" runat="server" Width="22px"></asp:TextBox>
-        &nbsp;: <asp:TextBox ID="TextBox5" runat="server" Width="22px"></asp:TextBox>
+            <h2>Court Number</h2>
+            <asp:DropDownList ID="drp_court" runat="server">
+            </asp:DropDownList>
+            <br />
+            <br />
+            <asp:Calendar ID="cal_booking_date" runat="server" BackColor="White" BorderColor="#999999" Caption="Choose the date" CaptionAlign="Top" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" SelectedDate="2022-10-05" Width="200px">
+                <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
+                <NextPrevStyle VerticalAlign="Bottom" />
+                <OtherMonthDayStyle ForeColor="#808080" />
+                <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
+                <SelectorStyle BackColor="#CCCCCC" />
+                <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
+                <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <WeekendDayStyle BackColor="#FFFFCC" />
+            </asp:Calendar>
+            <br />
+            <br />
+            <asp:Button ID="btn_book" runat="server" Text="Book" />
+            <asp:Label ID="lbl_results" runat="server" Text="Label"></asp:Label>
         </div>
     </form>
 </body>

@@ -21,7 +21,7 @@ Public Class WebForm1
         Dim loadVentureSql As String = "SELECT * FROM Venues"
         loadVentureCmd = New SqlCommand(loadVentureSql, conn)
 
-        Dim loadUserBookingSql As String = "SELECT * FROM booking where user_id = @uid"
+        Dim loadUserBookingSql As String = "SELECT * FROM booking WHERE user_id = @uid"
         loadUserBookingCmd = New SqlCommand(loadUserBookingSql, conn)
 
         Dim adapter As SqlDataAdapter = New SqlDataAdapter(loadVentureCmd)
@@ -70,7 +70,49 @@ Public Class WebForm1
                 lblVenue.Text = numCourtsAvailable
             End If
         End If
-        lbl_userId.Text = "Welcome, " + Name
+
+        loadUserBookingCmd.Parameters.Clear()
+        loadUserBookingCmd.Parameters.AddWithValue("uid", userId)
+
+        Dim adapter2 As SqlDataAdapter = New SqlDataAdapter(loadUserBookingCmd)
+        Dim ds2 As DataSet = New DataSet()
+        adapter2.Fill(ds2, "userBooking")
+
+        Dim dt2 As DataTable = ds2.Tables("userBooking")
+
+        If dt2.Rows.Count < 1 Then
+            lblNoBooks.Visible = True
+            lblNoBooks.Enabled = True
+        Else
+            If Not IsPostBack Then
+                For i As Integer = 0 To dt2.Rows.Count() - 1
+                    Dim dr As DataRow = dt2.Rows(i)
+                    Dim newRow As TableRow = New TableRow
+                    newRow.CssClass = "rows"
+                    Dim user_venue As Integer = dr("court_id")
+                    Dim booking_start As String = dr("booking_date_start")
+                    Dim booking_end As String = dr("booking_date_end")
+                    Dim payment_date As String = dr("payment_date")
+                    Dim ven As TableCell = New TableCell
+                    ven.Text = user_venue
+                    Dim bookStart As TableCell = New TableCell
+                    bookStart.Text = booking_start
+                    Dim bookEnd As TableCell = New TableCell
+                    bookEnd.Text = booking_end
+                    Dim payDate As TableCell = New TableCell
+                    payDate.Text = payment_date
+                    newRow.Cells.Add(ven)
+                    newRow.Cells.Add(bookStart)
+                    newRow.Cells.Add(bookEnd)
+                    newRow.Cells.Add(payDate)
+                    user_booked_tables.Rows.Add(newRow)
+                Next
+            End If
+        End If
+        If Not IsPostBack Then
+            cal_venue.SelectedDate = Date.Now()
+            lbl_userId.Text = "Welcome, " + Name
+        End If
     End Sub
 
     Protected Sub btn_logout_Click(sender As Object, e As EventArgs) Handles btn_logout.Click
