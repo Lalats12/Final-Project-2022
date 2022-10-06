@@ -41,6 +41,55 @@
             </asp:Calendar>
             <br />
             <br />
+            <asp:DropDownList ID="start_time_hr" runat="server">
+                <asp:ListItem>1</asp:ListItem>
+                <asp:ListItem>2</asp:ListItem>
+                <asp:ListItem>3</asp:ListItem>
+                <asp:ListItem>4</asp:ListItem>
+                <asp:ListItem>5</asp:ListItem>
+                <asp:ListItem>6</asp:ListItem>
+                <asp:ListItem>7</asp:ListItem>
+                <asp:ListItem>8</asp:ListItem>
+                <asp:ListItem>9</asp:ListItem>
+                <asp:ListItem>10</asp:ListItem>
+                <asp:ListItem>11</asp:ListItem>
+                <asp:ListItem>12</asp:ListItem>
+            </asp:DropDownList>&nbsp;: <asp:DropDownList ID="start_time_min" runat="server">
+                <asp:ListItem>00</asp:ListItem>
+                <asp:ListItem>15</asp:ListItem>
+                <asp:ListItem>30</asp:ListItem>
+                <asp:ListItem>45</asp:ListItem>
+            </asp:DropDownList>&nbsp;<asp:DropDownList ID="start_time_ampm" runat="server">
+                <asp:ListItem>AM</asp:ListItem>
+                <asp:ListItem>PM</asp:ListItem>
+            </asp:DropDownList>
+            <br />
+            <br />
+            <asp:DropDownList ID="end_time_hr" runat="server">
+                <asp:ListItem>1</asp:ListItem>
+                <asp:ListItem>2</asp:ListItem>
+                <asp:ListItem>3</asp:ListItem>
+                <asp:ListItem>4</asp:ListItem>
+                <asp:ListItem>5</asp:ListItem>
+                <asp:ListItem>6</asp:ListItem>
+                <asp:ListItem>7</asp:ListItem>
+                <asp:ListItem>8</asp:ListItem>
+                <asp:ListItem>9</asp:ListItem>
+                <asp:ListItem>10</asp:ListItem>
+                <asp:ListItem>11</asp:ListItem>
+                <asp:ListItem>12</asp:ListItem>
+            </asp:DropDownList>&nbsp;: <asp:DropDownList ID="end_time_min" runat="server">
+                <asp:ListItem>00</asp:ListItem>
+                <asp:ListItem>15</asp:ListItem>
+                <asp:ListItem>30</asp:ListItem>
+                <asp:ListItem>45</asp:ListItem>
+            </asp:DropDownList>&nbsp;<asp:DropDownList ID="end_time_ampm" runat="server">
+                <asp:ListItem>AM</asp:ListItem>
+                <asp:ListItem>PM</asp:ListItem>
+            </asp:DropDownList>
+&nbsp;<asp:CheckBox ID="chk_nextDay" runat="server" Text="Next Day" />
+            <br />
+            <br />
             <asp:Button ID="btn_book" runat="server" Text="Book" />
             <asp:Label ID="lbl_results" runat="server" Text="Label"></asp:Label>
         </div>

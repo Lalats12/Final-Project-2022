@@ -10,6 +10,7 @@ Public Class WebForm1
     Dim conn As SqlConnection
     Dim loadVentureCmd As SqlCommand
     Dim loadUserBookingCmd As SqlCommand
+    Dim checkBookCmd As SqlCommand
 
 
 
@@ -23,6 +24,11 @@ Public Class WebForm1
 
         Dim loadUserBookingSql As String = "SELECT * FROM booking WHERE user_id = @uid"
         loadUserBookingCmd = New SqlCommand(loadUserBookingSql, conn)
+
+        Dim checkBooksSql As String = "SELECT booking_id,FORMAT (booking_date_start, 'dd/MM/yyyy'), FORMAT (booking_date_start, 'hh:mm'), 
+                                       FORMAT (booking_date_end, 'dd/MM/yyyy'), FORMAT (booking_date_end, 'hh:mm')
+                                       FROM booking"
+        checkBookCmd = New SqlCommand(checkBooksSql, conn)
 
         Dim adapter As SqlDataAdapter = New SqlDataAdapter(loadVentureCmd)
         Dim ds As DataSet = New DataSet()

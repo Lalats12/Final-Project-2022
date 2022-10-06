@@ -6,6 +6,7 @@ Public Class Register_page
     Dim conn As SqlConnection
     Dim checkCmd As SqlCommand
     Dim registerCmd As SqlCommand
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim connStr As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\jpyea\source\repos\Final Project\Final Project\App_Data\badminton_database.mdf"";Integrated Security=True;Connect Timeout=30"
         conn = New SqlConnection(connStr)

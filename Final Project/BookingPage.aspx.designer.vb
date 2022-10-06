@@ -50,6 +50,69 @@ Partial Public Class BookingPage
     Protected WithEvents cal_booking_date As Global.System.Web.UI.WebControls.Calendar
 
     '''<summary>
+    '''start_time_hr control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents start_time_hr As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''start_time_min control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents start_time_min As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''start_time_ampm control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents start_time_ampm As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''end_time_hr control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents end_time_hr As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''end_time_min control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents end_time_min As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''end_time_ampm control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents end_time_ampm As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''chk_nextDay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chk_nextDay As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''btn_book control.
     '''</summary>
     '''<remarks>
