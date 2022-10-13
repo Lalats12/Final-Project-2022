@@ -51,7 +51,17 @@
         <h2 class="auto-style1">Your booked list</h2>
         <asp:Label ID="lblNoBooks" runat="server" Text="There's no bookings made" Visible="False" Enabled="False"></asp:Label>
         <div class="venue">
-            <asp:Table ID="user_booked_tables" runat="server" CssClass="tables"></asp:Table>
+            <asp:Table ID="user_booked_tables" runat="server" CssClass="tables">
+                <asp:TableRow runat="server">
+                    <asp:TableCell runat="server">Venue Id</asp:TableCell>
+                    <asp:TableCell runat="server">School Location</asp:TableCell>
+                    <asp:TableCell runat="server">Start Date</asp:TableCell>
+                    <asp:TableCell runat="server">End date</asp:TableCell>
+                    <asp:TableCell runat="server">Payment Date</asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+            <asp:Button ID="btn_edit" runat="server" Text="Edit your books" />
+            <asp:Button ID="btn_delete" runat="server" Text="Delete" />
         </div>
         <h2 class="auto-style1">Available list</h2>
             <div class="center">
@@ -86,7 +96,7 @@
                 </asp:DropDownList>
             </asp:Panel>
                 </div>
-        <div class="venue">
+            <div class="venue">
             <asp:Table ID="available_venue" runat="server" CssClass="tables">
                 <asp:TableRow runat="server">
                     <asp:TableCell ID="th_name" runat="server">School Name</asp:TableCell>
@@ -94,7 +104,8 @@
                     <asp:TableCell ID="th_curr" runat="server">Courts</asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
-            <asp:Button ID="btn_booking" runat="server" Text="Button" />
+            <asp:Button ID="btn_booking" runat="server" Text="Book now" />
+            <asp:Label ID="lbl_test" runat="server"></asp:Label>
         </div>
         </div>
     </form>

@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Public Class Register_page
     Inherits System.Web.UI.Page
-    Dim regexEmail As Regex = New Regex("^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$")
+    Dim regexEmail As Regex = New Regex("^((([^<>()[\]\\.,;:\s@])+\.?([^!@#$%^&*()_+{}:<>?])+)|.*)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z]+\.))+[a-zA-Z]{2,})")
     Dim regexPass As Regex = New Regex("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:]).{8,64}")
     Dim conn As SqlConnection
     Dim checkCmd As SqlCommand
@@ -17,6 +17,7 @@ Public Class Register_page
 
         Dim registerSql As String = "INSERT INTO user_data(username, user_password, user_email, user_numbers) VALUES(@uname,@upass,@uemail,@unum)"
         registerCmd = New SqlCommand(registerSql, conn)
+
     End Sub
 
     Protected Sub btn_register_Click(sender As Object, e As EventArgs) Handles btn_register.Click
@@ -69,8 +70,8 @@ Public Class Register_page
             Dim dt2 As DataTable = ds.Tables("loginU")
             Dim usid As DataRow = dt2.Rows(0)
             MsgBox("User registration successful, welcome," + user)
-            Name = user
-            userId = usid("user_id")
+            PubVar.Name = user
+            PubVar.userId = usid("user_id")
             Response.Redirect("main_page.aspx")
         Else
             MsgBox("Somethings wrong")

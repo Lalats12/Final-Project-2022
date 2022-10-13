@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class WebForm1
+Partial Public Class Edit_bookingaspx
 
     '''<summary>
     '''form1 control.
@@ -23,49 +23,157 @@ Partial Public Class WebForm1
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''lbl_userId control.
+    '''drp_user_booking control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_userId As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents drp_user_booking As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''btn_logout control.
+    '''lbl_choose control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_logout As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents lbl_choose As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblVenue control.
+    '''drp_school control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblVenue As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents drp_school As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''lblNoBooks control.
+    '''drp_court control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblNoBooks As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents drp_court As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''user_booked_tables control.
+    '''cal_booking_date control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents user_booked_tables As Global.System.Web.UI.WebControls.Table
+    Protected WithEvents cal_booking_date As Global.System.Web.UI.WebControls.Calendar
+
+    '''<summary>
+    '''start_time_hr control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents start_time_hr As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''start_time_min control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents start_time_min As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''start_time_ampm control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents start_time_ampm As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''end_time_hr control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents end_time_hr As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''end_time_min control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents end_time_min As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''end_time_ampm control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents end_time_ampm As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''chk_nextDay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chk_nextDay As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''drp_card_type control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents drp_card_type As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''txt_cardNum control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_cardNum As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''cal_expire_date control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cal_expire_date As Global.System.Web.UI.WebControls.Calendar
+
+    '''<summary>
+    '''txt_security control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_security As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_donate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_donate As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btn_edit control.
@@ -77,110 +185,20 @@ Partial Public Class WebForm1
     Protected WithEvents btn_edit As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btn_delete control.
+    '''btn_return control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_delete As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_return As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''Panel1 control.
+    '''lbl_results control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''cal_venue control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cal_venue As Global.System.Web.UI.WebControls.Calendar
-
-    '''<summary>
-    '''DropDownList1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents DropDownList1 As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''DropDownList2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents DropDownList2 As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''DropDownList3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents DropDownList3 As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''available_venue control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents available_venue As Global.System.Web.UI.WebControls.Table
-
-    '''<summary>
-    '''th_name control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents th_name As Global.System.Web.UI.WebControls.TableCell
-
-    '''<summary>
-    '''th_school control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents th_school As Global.System.Web.UI.WebControls.TableCell
-
-    '''<summary>
-    '''th_curr control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents th_curr As Global.System.Web.UI.WebControls.TableCell
-
-    '''<summary>
-    '''btn_booking control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_booking As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''lbl_test control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_test As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_results As Global.System.Web.UI.WebControls.Label
 End Class
