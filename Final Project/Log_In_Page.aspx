@@ -15,14 +15,15 @@
     <form id="form1" runat="server">
         <h1 class="auto-style1">Batminton Booking Page Area</h1>
         <div style="display:grid; place-items:center">
-            Username:<asp:TextBox ID="txt_username" runat="server"></asp:TextBox>
+            Username:<asp:TextBox ID="txt_username" runat="server" MaxLength="48"></asp:TextBox>
             <br />
             Password:<asp:TextBox ID="txt_password" runat="server"></asp:TextBox>
             <br />
+            <asp:HyperLink ID="hyp_forgot" runat="server" NavigateUrl="~/ForgotPass.aspx">Forgotten your password?</asp:HyperLink>
             <br />
             <asp:Button ID="btn_login" runat="server" Text="Login" />
             <asp:Button ID="btn_register" runat="server" Text="Register" />
-        </div>
+        &nbsp;</div>
     </form>
 </body>
 </html>

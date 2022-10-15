@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Log_In_Page
+Partial Public Class HMAdminLogin
 
     '''<summary>
     '''form1 control.
@@ -32,22 +32,13 @@ Partial Public Class Log_In_Page
     Protected WithEvents txt_username As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txt_password control.
+    '''txt_pass control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_password As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''hyp_forgot control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hyp_forgot As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents txt_pass As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btn_login control.
@@ -59,11 +50,11 @@ Partial Public Class Log_In_Page
     Protected WithEvents btn_login As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btn_register control.
+    '''btn_resigter control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_register As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_resigter As Global.System.Web.UI.WebControls.Button
 End Class

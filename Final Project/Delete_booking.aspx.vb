@@ -101,13 +101,13 @@ Public Class Delete_booking
 
             Dim rowsAffected As Integer = delPaymentCmd.ExecuteNonQuery()
             If rowsAffected < 1 Then
-                MsgBox("Error, unclear error");
+                MsgBox("Error, unclear error")
             Else
                 Dim rowsAffected2 As Integer = delBookingCmd.ExecuteNonQuery()
                 If rowsAffected2 < 1 Then
                     MsgBox("Error, rowsAffected2 Problem")
                 Else
-                    MsgBox("Booking Deleted");
+                    MsgBox("Booking Deleted")
                 End If
             End If
 

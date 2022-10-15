@@ -66,34 +66,62 @@
         <h2 class="auto-style1">Available list</h2>
             <div class="center">
             <asp:Panel ID="Panel1" runat="server">
-                <asp:Calendar ID="cal_venue" runat="server"></asp:Calendar>
-                <br />
-                <asp:DropDownList ID="DropDownList1" runat="server">
-                    <asp:ListItem>1</asp:ListItem>
-                    <asp:ListItem>2</asp:ListItem>
-                    <asp:ListItem>3</asp:ListItem>
-                    <asp:ListItem>4</asp:ListItem>
-                    <asp:ListItem>5</asp:ListItem>
-                    <asp:ListItem>6</asp:ListItem>
-                    <asp:ListItem>7</asp:ListItem>
-                    <asp:ListItem>8</asp:ListItem>
-                    <asp:ListItem>9</asp:ListItem>
+                <asp:Calendar ID="cal_venue" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
+                    <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
+                    <NextPrevStyle VerticalAlign="Bottom" />
+                    <OtherMonthDayStyle ForeColor="#808080" />
+                    <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
+                    <SelectorStyle BackColor="#CCCCCC" />
+                    <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
+                    <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
+                    <WeekendDayStyle BackColor="#FFFFCC" />
+                </asp:Calendar>
+                Start Time<br />
+                <asp:DropDownList ID="drp_start_hr" runat="server">
+                    <asp:ListItem>01</asp:ListItem>
+                    <asp:ListItem>02</asp:ListItem>
+                    <asp:ListItem>03</asp:ListItem>
+                    <asp:ListItem>04</asp:ListItem>
+                    <asp:ListItem>05</asp:ListItem>
+                    <asp:ListItem>06</asp:ListItem>
+                    <asp:ListItem>07</asp:ListItem>
+                    <asp:ListItem>08</asp:ListItem>
+                    <asp:ListItem>09</asp:ListItem>
                     <asp:ListItem>10</asp:ListItem>
                     <asp:ListItem>11</asp:ListItem>
                     <asp:ListItem>12</asp:ListItem>
                 </asp:DropDownList>
-                &nbsp; :&nbsp;
-                <asp:DropDownList ID="DropDownList2" runat="server">
-                    <asp:ListItem>00</asp:ListItem>
-                    <asp:ListItem>15</asp:ListItem>
-                    <asp:ListItem>30</asp:ListItem>
-                    <asp:ListItem>45</asp:ListItem>
-                </asp:DropDownList>
-                &nbsp;
-                <asp:DropDownList ID="DropDownList3" runat="server">
+                &nbsp; :&nbsp; 00&nbsp;
+                <asp:DropDownList ID="drp_start_ampm" runat="server">
                     <asp:ListItem>AM</asp:ListItem>
                     <asp:ListItem>PM</asp:ListItem>
                 </asp:DropDownList>
+                <br />
+                End time<br />
+                <asp:DropDownList ID="drp_end_hr" runat="server">
+                    <asp:ListItem>01</asp:ListItem>
+                    <asp:ListItem>02</asp:ListItem>
+                    <asp:ListItem>03</asp:ListItem>
+                    <asp:ListItem>04</asp:ListItem>
+                    <asp:ListItem>05</asp:ListItem>
+                    <asp:ListItem>06</asp:ListItem>
+                    <asp:ListItem>07</asp:ListItem>
+                    <asp:ListItem>08</asp:ListItem>
+                    <asp:ListItem>09</asp:ListItem>
+                    <asp:ListItem>10</asp:ListItem>
+                    <asp:ListItem>11</asp:ListItem>
+                    <asp:ListItem>12</asp:ListItem>
+                </asp:DropDownList>
+                &nbsp; :&nbsp; 00
+                <asp:DropDownList ID="drp_end_ampm" runat="server">
+                    <asp:ListItem>AM</asp:ListItem>
+                    <asp:ListItem>PM</asp:ListItem>
+                </asp:DropDownList>
+                &nbsp;<asp:CheckBox ID="chk_next_day" runat="server" Text="Next Day" />
+                <br />
+                <asp:Button ID="btn_check" runat="server" Text="Check Booking" />
+                &nbsp;
+                <asp:Button ID="btn_cancel" runat="server" Text="Cancel" Visible="False" />
             </asp:Panel>
                 </div>
             <div class="venue">

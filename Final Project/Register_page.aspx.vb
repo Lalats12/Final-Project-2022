@@ -49,7 +49,7 @@ Public Class Register_page
 
         Dim dt As DataTable = ds.Tables("checkHas")
 
-        If dt.Rows().Count >= 1 Then
+        If dt.Rows.Count >= 1 Then
             MsgBox("Username/Email exist. Please use a different account")
             Exit Sub
         End If

@@ -104,31 +104,67 @@ Partial Public Class WebForm1
     Protected WithEvents cal_venue As Global.System.Web.UI.WebControls.Calendar
 
     '''<summary>
-    '''DropDownList1 control.
+    '''drp_start_hr control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DropDownList1 As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents drp_start_hr As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''DropDownList2 control.
+    '''drp_start_ampm control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DropDownList2 As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents drp_start_ampm As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''DropDownList3 control.
+    '''drp_end_hr control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DropDownList3 As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents drp_end_hr As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''drp_end_ampm control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents drp_end_ampm As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''chk_next_day control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chk_next_day As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''btn_check control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_check As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btn_cancel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_cancel As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''available_venue control.

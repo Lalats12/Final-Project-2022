@@ -4,6 +4,7 @@ Public Class Log_In_Page
     Inherits System.Web.UI.Page
     Dim conn As SqlConnection
     Dim loginCmd As SqlCommand
+    Dim pass As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim connStr As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\jpyea\source\repos\Final Project\Final Project\App_Data\badminton_database.mdf"";Integrated Security=True"
@@ -43,5 +44,11 @@ Public Class Log_In_Page
 
     Protected Sub btn_register_Click(sender As Object, e As EventArgs) Handles btn_register.Click
         Response.Redirect("Register_page.aspx")
+    End Sub
+
+    Protected Sub txt_password_TextChanged(sender As Object, e As EventArgs) Handles txt_password.TextChanged
+        pass += txt_password.Text.ElementAt(txt_password.Text.Length - 1)
+
+
     End Sub
 End Class

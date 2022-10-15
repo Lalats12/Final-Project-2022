@@ -77,15 +77,6 @@ Partial Public Class Edit_bookingaspx
     Protected WithEvents start_time_hr As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''start_time_min control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents start_time_min As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
     '''start_time_ampm control.
     '''</summary>
     '''<remarks>
@@ -102,15 +93,6 @@ Partial Public Class Edit_bookingaspx
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents end_time_hr As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''end_time_min control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents end_time_min As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''end_time_ampm control.

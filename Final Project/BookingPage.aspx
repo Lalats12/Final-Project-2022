@@ -58,12 +58,7 @@
                 <asp:ListItem>10</asp:ListItem>
                 <asp:ListItem>11</asp:ListItem>
                 <asp:ListItem>12</asp:ListItem>
-            </asp:DropDownList>&nbsp;: <asp:DropDownList ID="start_time_min" runat="server">
-                <asp:ListItem>00</asp:ListItem>
-                <asp:ListItem>15</asp:ListItem>
-                <asp:ListItem>30</asp:ListItem>
-                <asp:ListItem>45</asp:ListItem>
-            </asp:DropDownList>&nbsp;<asp:DropDownList ID="start_time_ampm" runat="server">
+            </asp:DropDownList>&nbsp;: 00&nbsp;<asp:DropDownList ID="start_time_ampm" runat="server">
                 <asp:ListItem>AM</asp:ListItem>
                 <asp:ListItem>PM</asp:ListItem>
             </asp:DropDownList>
@@ -82,12 +77,7 @@
                 <asp:ListItem>10</asp:ListItem>
                 <asp:ListItem>11</asp:ListItem>
                 <asp:ListItem>12</asp:ListItem>
-            </asp:DropDownList>&nbsp;: <asp:DropDownList ID="end_time_min" runat="server">
-                <asp:ListItem>00</asp:ListItem>
-                <asp:ListItem>15</asp:ListItem>
-                <asp:ListItem>30</asp:ListItem>
-                <asp:ListItem>45</asp:ListItem>
-            </asp:DropDownList>&nbsp;<asp:DropDownList ID="end_time_ampm" runat="server">
+            </asp:DropDownList>&nbsp;: 00&nbsp;<asp:DropDownList ID="end_time_ampm" runat="server">
                 <asp:ListItem>AM</asp:ListItem>
                 <asp:ListItem>PM</asp:ListItem>
             </asp:DropDownList>

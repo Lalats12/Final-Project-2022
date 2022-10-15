@@ -31,7 +31,7 @@ Public Class BookingPage
 
         Dim getCourtsSql As String = "SELECT venue_id, school_name,school_tag, court_id
                                       FROM Venues INNER JOIN Court ON Venues.venue_id = court.school_id
-                                      WHERE school_tag = @schtag"
+                                      WHERE school_tag = @schtag AND Court.status = 1"
         getCourtsCmd = New SqlCommand(getCourtsSql, conn)
 
         Dim checkUserSql As String = "SELECT booking_id, booking.user_id, school_name, booking.court_id, booking_date_start, booking_date_end, school_address
@@ -115,7 +115,7 @@ Public Class BookingPage
         Dim dt As DataTable = ds.Tables("courtsTable")
 
         If dt.Rows.Count < 1 Then
-            MsgBox("Error occured, please try again")
+            MsgBox("All courts may be under maintance")
         Else
             drp_court.Items.Clear()
             drp_court.Items.Add("(Select)")
@@ -137,12 +137,18 @@ Public Class BookingPage
             Dim expire_date As String = cal_expire_date.SelectedDate.Date.ToString("dd/MM/yyyy")
             If booking_date < Date.Now.ToString("dd/MM/yyyy") Then
                 MsgBox("The date you inputted is behind the current date.")
+                Exit Sub
+            End If
+            If booking_date > Date.Now.AddMonths(3).ToString("dd/MM/yyyy") Then
+                MsgBox("The date you entered is exceeded the limits of booking(3 months)")
             End If
             Dim expireDate As DateTime = DateTime.Parse(expire_date)
-            Dim startDate As DateTime = DateTime.Parse(booking_date + " " + start_time_hr.SelectedValue + ":" +
-            start_time_min.SelectedValue + " " + start_time_ampm.SelectedValue)
-            Dim endDate As DateTime = DateTime.Parse(cal_booking_date.SelectedDate.Date.ToString("dd/MM/yyyy") + " " + end_time_hr.SelectedValue + ":" +
-            end_time_min.SelectedValue + " " + end_time_ampm.SelectedValue)
+            If expireDate < Date.Now() Then
+                MsgBox("Your card has expired, please try again")
+                Exit Sub
+            End If
+            Dim startDate As DateTime = DateTime.Parse(booking_date + " " + start_time_hr.SelectedValue + ":00 " + start_time_ampm.SelectedValue)
+            Dim endDate As DateTime = DateTime.Parse(booking_date + " " + end_time_hr.SelectedValue + ":00" + end_time_ampm.SelectedValue)
 
             If chk_nextDay.Checked Then
                 endDate.AddDays(1)

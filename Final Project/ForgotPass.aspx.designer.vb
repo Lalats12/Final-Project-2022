@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Log_In_Page
+Partial Public Class ForgotPass
 
     '''<summary>
     '''form1 control.
@@ -23,47 +23,47 @@ Partial Public Class Log_In_Page
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''txt_username control.
+    '''txt_user control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_username As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_user As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txt_password control.
+    '''txt_email control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_password As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_email As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''hyp_forgot control.
+    '''hyp_user control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hyp_forgot As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents hyp_user As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''btn_login control.
+    '''btn_reset control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_login As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_reset As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btn_register control.
+    '''btn_main_menu control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_register As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_main_menu As Global.System.Web.UI.WebControls.Button
 End Class

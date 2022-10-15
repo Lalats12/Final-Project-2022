@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Log_In_Page
+Partial Public Class Admin_page
 
     '''<summary>
     '''form1 control.
@@ -23,47 +23,29 @@ Partial Public Class Log_In_Page
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''txt_username control.
+    '''btn_checkUsers control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_username As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents btn_checkUsers As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''txt_password control.
+    '''btn_booking control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_password As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents btn_booking As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''hyp_forgot control.
+    '''btn_schools control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hyp_forgot As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
-    '''btn_login control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_login As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btn_register control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_register As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_schools As Global.System.Web.UI.WebControls.Button
 End Class
