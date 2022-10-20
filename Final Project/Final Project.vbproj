@@ -95,6 +95,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="About_Us.html" />
     <Content Include="AdminPage\AdminBooking.aspx" />
     <Content Include="AdminPage\AdminSchool.aspx" />
     <Content Include="AdminPage\AdminUser.aspx" />
@@ -109,6 +110,13 @@
     <Content Include="BookingPage.aspx" />
     <Content Include="ContratorPage.aspx" />
     <Content Include="HMRegister.aspx" />
+    <Content Include="images\bg1.jpg" />
+    <Content Include="images\facebook.png" />
+    <Content Include="images\favicon.png" />
+    <Content Include="images\gmail.png" />
+    <Content Include="images\instagram.png" />
+    <Content Include="images\ms.jpg" />
+    <Content Include="images\twitter.png" />
     <Content Include="ManageCourts.aspx" />
     <Content Include="CreateSchool.aspx" />
     <Content Include="Delete_booking.aspx" />

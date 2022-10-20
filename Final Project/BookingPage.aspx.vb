@@ -29,7 +29,7 @@ Public Class BookingPage
                                       WHERE school_tag = @stag"
         loadNameCmd = New SqlCommand(loadNameSql, conn)
 
-        Dim getCourtsSql As String = "SELECT venue_id, school_name,school_tag, court_id
+        Dim getCourtsSql As String = "SELECT venue_id, school_name,school_tag, court_id, status
                                       FROM Venues INNER JOIN Court ON Venues.venue_id = court.school_id
                                       WHERE school_tag = @schtag AND Court.status = 1"
         getCourtsCmd = New SqlCommand(getCourtsSql, conn)
@@ -121,9 +121,11 @@ Public Class BookingPage
             drp_court.Items.Add("(Select)")
             For i As Integer = 0 To dt.Rows.Count - 1
                 Dim dr As DataRow = dt.Rows(i)
-                Dim courtId As Integer = dr("court_id")
-                drp_court.Items.Add(i + 1)
-                drp_court.Items.Item(i + 1).Value = courtId
+                If dr("status") = True Then
+                    Dim courtId As Integer = dr("court_id")
+                    drp_court.Items.Add(i + 1)
+                    drp_court.Items.Item(i + 1).Value = courtId
+                End If
             Next
         End If
 
@@ -139,7 +141,7 @@ Public Class BookingPage
                 MsgBox("The date you inputted is behind the current date.")
                 Exit Sub
             End If
-            If booking_date > Date.Now.AddMonths(3).ToString("dd/MM/yyyy") Then
+            If booking_date > Date.Now.AddMonths(3) Then
                 MsgBox("The date you entered is exceeded the limits of booking(3 months)")
             End If
             Dim expireDate As DateTime = DateTime.Parse(expire_date)
@@ -150,17 +152,18 @@ Public Class BookingPage
             Dim startDate As DateTime = DateTime.Parse(booking_date + " " + start_time_hr.SelectedValue + ":00 " + start_time_ampm.SelectedValue)
             Dim endDate As DateTime = DateTime.Parse(booking_date + " " + end_time_hr.SelectedValue + ":00" + end_time_ampm.SelectedValue)
 
-            If chk_nextDay.Checked Then
-                endDate.AddDays(1)
+            If chk_nextDay.Checked = True Then
+                endDate = endDate.AddDays(1)
                 nextDay = 1
             End If
 
-            If (DateDiff("n", startDate, endDate) > 180) Then
+            MsgBox(startDate.ToString + " " + endDate.ToString)
+            If (DateDiff("h", startDate, endDate) > 3) Then
                 MsgBox("The maximum allocated time is 3 hours")
                 Exit Sub
             End If
 
-            If (DateDiff("n", startDate, endDate) < 0) Then
+            If (DateDiff("h", startDate, endDate) < 0) Then
                 MsgBox("The end date must be later than the start date")
                 Exit Sub
             End If
@@ -195,9 +198,9 @@ Public Class BookingPage
                 For i As Integer = 0 To dt.Rows.Count - 1
                     Dim dr As DataRow = dt.Rows(i)
                     If (startDate >= dr("booking_date_start") And endDate <= dr("booking_date_end")) OrElse
-                       (startDate >= dr("booking_date_start") And DateDiff("n", dr("booking_date_end"), endDate) >= 15) OrElse
-                       (endDate <= dr("booking_date_end") And DateDiff("n", startDate, dr("booking_date_start")) <= -15) OrElse
-                       ((DateDiff("n", dr("booking_date_end"), endDate) >= 15) And DateDiff("n", dr("booking_date_start"), startDate) <= -15) Then
+                       ((startDate >= dr("booking_date_start") And startDate <= dr("booking_date_end")) And DateDiff("h", dr("booking_date_end"), endDate) >= 0) OrElse
+                       ((endDate <= dr("booking_date_end") And endDate >= dr("booking_date_start")) And DateDiff("h", startDate, dr("booking_date_start")) <= 0) OrElse
+                       ((DateDiff("h", dr("booking_date_end"), endDate) >= 0) And DateDiff("h", dr("booking_date_start"), startDate) <= 0) Then
                         MsgBox("Booking collision detected. Please try again")
                         Exit Sub
                     End If
@@ -276,8 +279,9 @@ Public Class BookingPage
             For i As Integer = 0 To dt.Rows.Count - 1
                 Dim dr As DataRow = dt.Rows(i)
                 Dim courtId As Integer = dr("court_id")
-                drp_court.Items.Add(i + 1)
-                drp_court.Items.Item(i + 1).Value = courtId
+                    Dim status As String = (i + 1).ToString
+                    drp_court.Items.Add(status + " (" + courtId.ToString + ")")
+                drp_court.Items.Item(1 + i).Value = courtId
             Next
         End If
     End Sub

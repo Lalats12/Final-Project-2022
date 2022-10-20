@@ -122,6 +122,7 @@
                 <asp:Button ID="btn_check" runat="server" Text="Check Booking" />
                 &nbsp;
                 <asp:Button ID="btn_cancel" runat="server" Text="Cancel" Visible="False" />
+                <br />
             </asp:Panel>
                 </div>
             <div class="venue">
@@ -134,6 +135,9 @@
             </asp:Table>
             <asp:Button ID="btn_booking" runat="server" Text="Book now" />
             <asp:Label ID="lbl_test" runat="server"></asp:Label>
+                <br />
+                <br />
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/About_Us.html">About Us</asp:HyperLink>
         </div>
         </div>
     </form>

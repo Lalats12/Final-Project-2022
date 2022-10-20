@@ -23,31 +23,31 @@ Partial Public Class CreateSchool
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''TextBox1 control.
+    '''txt_school control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TextBox1 As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_school As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''TextBox2 control.
+    '''txt_location control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TextBox2 As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_location As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''TextBox3 control.
+    '''txt_tag control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TextBox3 As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_tag As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btn_courts control.

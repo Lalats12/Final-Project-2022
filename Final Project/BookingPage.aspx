@@ -33,7 +33,8 @@
             </asp:DropDownList>
             <br />
             Maximum Allocated time is 3 Hours<br />
-            <asp:Calendar ID="cal_booking_date" runat="server" BackColor="White" BorderColor="#999999" Caption="Choose the date" CaptionAlign="Top" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" SelectedDate="2022-10-05" Width="200px">
+            Forward booking is maximunm 3 months ahead<br />
+            <asp:Calendar ID="cal_booking_date" runat="server" BackColor="White" BorderColor="#999999" Caption="Choose the date" CaptionAlign="Top" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
                 <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
                 <NextPrevStyle VerticalAlign="Bottom" />
                 <OtherMonthDayStyle ForeColor="#808080" />
@@ -88,7 +89,6 @@
                 <asp:ListItem>Maybank</asp:ListItem>
                 <asp:ListItem>OCBC</asp:ListItem>
                 <asp:ListItem>VISA</asp:ListItem>
-                <asp:ListItem>Others</asp:ListItem>
             </asp:DropDownList>
             <br />
             Card number(Vaild number: XXXX-XXXX-XXXX):<br />

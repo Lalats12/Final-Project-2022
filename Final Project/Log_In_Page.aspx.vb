@@ -37,7 +37,7 @@ Public Class Log_In_Page
             Dim dr As DataRow = dt.Rows(0)
             MsgBox("Welcome, " + userName)
             userId = dr("user_id")
-            Name = dr("userName")
+            PubVar.userName = dr("userName")
             Response.Redirect("main_page.aspx")
         End If
     End Sub
@@ -46,9 +46,5 @@ Public Class Log_In_Page
         Response.Redirect("Register_page.aspx")
     End Sub
 
-    Protected Sub txt_password_TextChanged(sender As Object, e As EventArgs) Handles txt_password.TextChanged
-        pass += txt_password.Text.ElementAt(txt_password.Text.Length - 1)
 
-
-    End Sub
 End Class

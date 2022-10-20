@@ -35,7 +35,7 @@ Public Class WebForm1
                                        FROM booking"
         checkBookCmd = New SqlCommand(checkBooksSql, conn)
 
-        Dim checkCurrDaySql As String = "SELECT booking_id,school_name, court_id, booking_start_date, booking_end_date
+        Dim checkCurrDaySql As String = "SELECT booking_id,school_name, booking.court_id, booking_date_start, booking_date_end
                                          FROM booking INNER JOIN Court ON (Court.court_id = booking.court_id) 
                                          INNER JOIN Venues ON Venues.venue_id = Court.school_id"
         checkCurrDayCmd = New SqlCommand(checkCurrDaySql, conn)
@@ -63,7 +63,6 @@ Public Class WebForm1
                     numCourtsAvailable += SchoolAvailable
                     Dim ven As TableCell = New TableCell
                     ven.Text = courtId
-                    ven.Visible = False
                     Dim sch As TableCell = New TableCell
                     sch.Text = SchoolName
                     Dim loc As TableCell = New TableCell
@@ -114,6 +113,7 @@ Public Class WebForm1
                 Dim venueLoc As String = dr("school_address")
                 Dim bookingId As Integer = dr("booking_id")
                 Dim user_venue As Integer = dr("court_id")
+                Dim schName As String = dr("school_name")
                 Dim booking_start As String = dr("booking_date_start")
                 Dim booking_end As String = dr("booking_date_end")
                 Dim payment_date As String = dr("payment_date")
@@ -125,6 +125,8 @@ Public Class WebForm1
                 book.Text = i + 1
                 Dim ven As TableCell = New TableCell
                 ven.Text = user_venue
+                Dim sch As TableCell = New TableCell
+                sch.Text = schName
                 Dim bookStart As TableCell = New TableCell
                 bookStart.Text = booking_start
                 Dim bookEnd As TableCell = New TableCell
@@ -132,16 +134,16 @@ Public Class WebForm1
                 Dim payDate As TableCell = New TableCell
                 payDate.Text = payment_date
                 newRow.Cells.Add(ven)
+                newRow.Cells.Add(sch)
                 newRow.Cells.Add(venloc)
                 newRow.Cells.Add(bookStart)
                 newRow.Cells.Add(bookEnd)
-                newRow.Cells.Add(payDate)
                 user_booked_tables.Rows.Add(newRow)
             Next
         End If
         If Not IsPostBack Then
             cal_venue.SelectedDate = DateTime.Parse(Date.Now.ToString("dd/MM/yyyy"))
-            lbl_userId.Text = "Welcome, " + Name
+            lbl_userId.Text = "Welcome, " + userName
         End If
     End Sub
 
@@ -174,8 +176,7 @@ Public Class WebForm1
         Dim startDate As DateTime = DateTime.Parse(cal_venue.SelectedDate.Date.ToString("dd/MM/yyyy") + " " + drp_start_hr.Text + ":00 " + drp_start_ampm.Text)
         Dim endDate As DateTime = DateTime.Parse(cal_venue.SelectedDate.Date.ToString("dd/MM/yyyy") + " " + drp_end_hr.Text + ":00 " + drp_end_ampm.Text)
         If chk_next_day.Checked Then
-            endDate.AddDays(1)
-            nextDay = 1
+            endDate = endDate.AddDays(1)
         End If
 
         available_venue.Rows.Clear()
@@ -189,6 +190,39 @@ Public Class WebForm1
         If dt.Rows.Count < 1 Then
             MsgBox("Error, failed to retrive data")
         Else
+            For i As Integer = 0 To dt.Rows.Count - 1
+                Dim dr As DataRow = dt.Rows(i)
+                If (startDate >= dr("booking_date_start") And endDate <= dr("booking_date_end")) OrElse
+                    ((startDate >= dr("booking_date_start") And startDate <= dr("booking_date_end")) And DateDiff("h", dr("booking_date_end"), endDate) >= 0) OrElse
+                    ((endDate <= dr("booking_date_end") And endDate >= dr("booking_date_start")) And DateDiff("h", startDate, dr("booking_date_start")) <= 0) OrElse
+                    ((DateDiff("h", dr("booking_date_end"), endDate) >= 0) And DateDiff("h", dr("booking_date_start"), startDate) <= 0) Then
+                    Dim newRow As TableRow = New TableRow
+                    Dim id As Integer = dr("booking_id")
+                    Dim schName As String = dr("school_name")
+                    Dim courtId As Integer = dr("court_id")
+                    Dim bookStart As DateTime = dr("booking_date_start")
+                    Dim bookEnd As DateTime = dr("booking_date_end")
+
+                    Dim cellId As TableCell = New TableCell
+                    Dim cellSch As TableCell = New TableCell
+                    Dim cellCourt As TableCell = New TableCell
+                    Dim cellStart As TableCell = New TableCell
+                    Dim cellEnd As TableCell = New TableCell
+
+                    cellId.Text = id
+                    cellSch.Text = schName
+                    cellCourt.Text = courtId
+                    cellStart.Text = bookStart.ToString
+                    cellEnd.Text = bookEnd.ToString
+
+                    newRow.Cells.Add(cellId)
+                    newRow.Cells.Add(cellSch)
+                    newRow.Cells.Add(cellCourt)
+                    newRow.Cells.Add(cellStart)
+                    newRow.Cells.Add(cellEnd)
+                    available_venue.Rows.Add(newRow)
+                End If
+            Next
 
         End If
 

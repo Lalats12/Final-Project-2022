@@ -23,7 +23,9 @@
             <br />
             <asp:Button ID="btn_login" runat="server" Text="Login" />
             <asp:Button ID="btn_register" runat="server" Text="Register" />
-        &nbsp;</div>
+        &nbsp;<br />
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/About_Us.html">About Us</asp:HyperLink>
+        </div>
     </form>
 </body>
 </html>

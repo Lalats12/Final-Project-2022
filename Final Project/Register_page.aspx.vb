@@ -70,7 +70,7 @@ Public Class Register_page
             Dim dt2 As DataTable = ds.Tables("loginU")
             Dim usid As DataRow = dt2.Rows(0)
             MsgBox("User registration successful, welcome," + user)
-            PubVar.Name = user
+            PubVar.userName = user
             PubVar.userId = usid("user_id")
             Response.Redirect("main_page.aspx")
         Else
