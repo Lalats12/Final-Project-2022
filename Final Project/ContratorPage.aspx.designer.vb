@@ -23,13 +23,13 @@ Partial Public Class ContratorPage
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''Label1 control.
+    '''lbl_Welcome control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_Welcome As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lbl_signSchool control.
@@ -75,6 +75,24 @@ Partial Public Class ContratorPage
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_school_loc As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_invisible_loctag control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_invisible_loctag As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''chk_sameLoc control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chk_sameLoc As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''txt_tag control.

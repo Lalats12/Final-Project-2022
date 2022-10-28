@@ -219,7 +219,7 @@ Public Class CreateCourts
         Dim veri As String = InputBox("Enter your numbers", "Pin verification")
 
         checkUserCmd.Parameters.Clear()
-        checkUserCmd.Parameters.AddWithValue("hi", HM_id)
+        checkUserCmd.Parameters.AddWithValue("hi", HMVars.HM_id)
 
         Dim adapter As SqlDataAdapter = New SqlDataAdapter(checkUserCmd)
         Dim ds As DataSet = New DataSet
@@ -280,7 +280,7 @@ Public Class CreateCourts
         Dim veri As String = InputBox("Enter your numbers", "Pin verification")
 
         checkUserCmd.Parameters.Clear()
-        checkUserCmd.Parameters.AddWithValue("hi", HM_id)
+        checkUserCmd.Parameters.AddWithValue("hi", HMVars.HM_id)
 
         Dim adapter As SqlDataAdapter = New SqlDataAdapter(checkUserCmd)
         Dim ds As DataSet = New DataSet
@@ -335,8 +335,8 @@ Public Class CreateCourts
 
         Dim dt As DataTable = ds.Tables("checkCor")
 
-        If drp_availa.SelectedValue = "Not Ready" And dt.Rows.Count > 0 Then
-            MsgBox("Error, there are bookings made with the system")
+        If drp_availa.SelectedValue = 0 And dt.Rows.Count > 0 Then
+            MsgBox("Error, there are bookings made with the system." + vbCrLf + "If you want to change it, notify the support team")
             Exit Sub
         End If
 

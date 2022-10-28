@@ -33,7 +33,7 @@ Public Class Delete_booking
         delBookingCmd = New SqlCommand(delBookingsql, conn)
 
         loadUserBookCmd.Parameters.Clear()
-        loadUserBookCmd.Parameters.AddWithValue("uid", userId)
+        loadUserBookCmd.Parameters.AddWithValue("uid", PubVar.userId)
 
         Dim adapter As SqlDataAdapter = New SqlDataAdapter(loadUserBookCmd)
         Dim ds As DataSet = New DataSet

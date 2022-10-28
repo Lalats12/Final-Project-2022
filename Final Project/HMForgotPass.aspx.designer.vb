@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class HMAdminLogin
+Partial Public Class HMForgotPass
 
     '''<summary>
     '''form1 control.
@@ -32,38 +32,38 @@ Partial Public Class HMAdminLogin
     Protected WithEvents txt_username As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txt_pass control.
+    '''txt_email control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_pass As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_email As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''hyperlink1 control.
+    '''HyperLink1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hyperlink1 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents HyperLink1 As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''btn_login control.
+    '''btn_send control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_login As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_send As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btn_resigter control.
+    '''btn_menu control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_resigter As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_menu As Global.System.Web.UI.WebControls.Button
 End Class

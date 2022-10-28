@@ -17,7 +17,7 @@
         <div style="display:grid; place-items:center">
             Username:<asp:TextBox ID="txt_username" runat="server" MaxLength="48"></asp:TextBox>
             <br />
-            Password:<asp:TextBox ID="txt_password" runat="server"></asp:TextBox>
+            Password:<asp:TextBox ID="txt_password" runat="server" TextMode="Password"></asp:TextBox>
             <br />
             <asp:HyperLink ID="hyp_forgot" runat="server" NavigateUrl="~/ForgotPass.aspx">Forgotten your password?</asp:HyperLink>
             <br />

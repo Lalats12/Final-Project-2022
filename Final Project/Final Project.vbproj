@@ -65,6 +65,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Tulpep.NotificationWindow, Version=1.1.38.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tulpep.NotificationWindow.1.1.38\lib\net40\Tulpep.NotificationWindow.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -99,6 +102,7 @@
     <Content Include="AdminPage\AdminBooking.aspx" />
     <Content Include="AdminPage\AdminSchool.aspx" />
     <Content Include="AdminPage\AdminUser.aspx" />
+    <Content Include="AdminPage\AdminCourts.aspx" />
     <Content Include="Admin_page.aspx" />
     <Content Include="App_Data\badminton_database.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -109,6 +113,8 @@
     </Content>
     <Content Include="BookingPage.aspx" />
     <Content Include="ContratorPage.aspx" />
+    <Content Include="HMForgotName.aspx" />
+    <Content Include="HMForgotPass.aspx" />
     <Content Include="HMRegister.aspx" />
     <Content Include="images\bg1.jpg" />
     <Content Include="images\facebook.png" />
@@ -156,6 +162,14 @@
       <DependentUpon>AdminUser.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="AdminPage\AdminCourts.aspx.designer.vb">
+      <DependentUpon>AdminCourts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPage\AdminCourts.aspx.vb">
+      <DependentUpon>AdminCourts.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="AdminVars.vb" />
     <Compile Include="Admin_page.aspx.designer.vb">
       <DependentUpon>Admin_page.aspx</DependentUpon>
     </Compile>
@@ -175,6 +189,20 @@
     </Compile>
     <Compile Include="ContratorPage.aspx.vb">
       <DependentUpon>ContratorPage.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="HMForgotName.aspx.designer.vb">
+      <DependentUpon>HMForgotName.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HMForgotName.aspx.vb">
+      <DependentUpon>HMForgotName.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="HMForgotPass.aspx.designer.vb">
+      <DependentUpon>HMForgotPass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HMForgotPass.aspx.vb">
+      <DependentUpon>HMForgotPass.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="HMRegister.aspx.designer.vb">
@@ -248,6 +276,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Module1.vb" />
+    <Compile Include="HMVars.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

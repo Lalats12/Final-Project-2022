@@ -39,8 +39,8 @@ Public Class HMAdminLogin
         Else
             Dim dr As DataRow = dt.Rows(0)
             MsgBox("Welcome, " + userName)
-            userId = dr("hm_id")
-            PubVar.userName = dr("hm_username")
+            HMVars.HM_id = dr("hm_id")
+            HMVars.HM_name = dr("hm_username")
             If dr("role") = "Admin" Then
                 Response.Redirect("Admin_page.aspx")
             ElseIf dr("role") = "counciler" Then

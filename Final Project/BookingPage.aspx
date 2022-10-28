@@ -91,7 +91,7 @@
                 <asp:ListItem>VISA</asp:ListItem>
             </asp:DropDownList>
             <br />
-            Card number(Vaild number: XXXX-XXXX-XXXX):<br />
+            Card number(Vaild number: XXXX-XXXX-XXXX-XXXX):<br />
             <asp:TextBox ID="txt_cardNum" runat="server"></asp:TextBox>
             <br />
             Expire date<br />

@@ -45,7 +45,7 @@ Public Class CreateSchool
         updateHMCmd = New SqlCommand(updateHM, conn)
 
         checkHMCmd.Parameters.Clear()
-        checkHMCmd.Parameters.AddWithValue("hi", HM_id)
+        checkHMCmd.Parameters.AddWithValue("hi", HMVars.HM_id)
 
         Dim adapter As SqlDataAdapter = New SqlDataAdapter(checkHMCmd)
         Dim ds As DataSet = New DataSet
@@ -90,7 +90,7 @@ Public Class CreateSchool
 
         Dim dt As DataTable = ds.Tables("checkSchool")
 
-        If dt.Rows.Count > 1 Then
+        If dt.Rows.Count > 0 Then
             MsgBox("There is(are) school(s) with the same name of the school/location/tag")
             Exit Sub
         Else
@@ -137,7 +137,7 @@ Public Class CreateSchool
                         Dim dr2 As DataRow = dt3.Rows(0)
 
                         updateHMCmd.Parameters.Clear()
-                        updateHMCmd.Parameters.AddWithValue("hid", HM_id)
+                        updateHMCmd.Parameters.AddWithValue("hid", HMVars.HM_id)
                         updateHMCmd.Parameters.AddWithValue("sch", dr2("venue_id"))
                         HM_school = dr2("venue_id")
 

@@ -91,9 +91,9 @@ Public Class WebForm1
             End If
         End If
         loadUserBookingCmd.Parameters.Clear()
-            loadUserBookingCmd.Parameters.AddWithValue("uid", userId)
+        loadUserBookingCmd.Parameters.AddWithValue("uid", PubVar.userId)
 
-            Dim adapter2 As SqlDataAdapter = New SqlDataAdapter(loadUserBookingCmd)
+        Dim adapter2 As SqlDataAdapter = New SqlDataAdapter(loadUserBookingCmd)
             Dim ds2 As DataSet = New DataSet()
             adapter2.Fill(ds2, "userBooking")
 
@@ -143,7 +143,7 @@ Public Class WebForm1
         End If
         If Not IsPostBack Then
             cal_venue.SelectedDate = DateTime.Parse(Date.Now.ToString("dd/MM/yyyy"))
-            lbl_userId.Text = "Welcome, " + userName
+            lbl_userId.Text = "Welcome, " + userName + ". Your id is: " + PubVar.userId.ToString
         End If
     End Sub
 
@@ -172,7 +172,6 @@ Public Class WebForm1
     End Sub
 
     Protected Sub btn_check_Click(sender As Object, e As EventArgs) Handles btn_check.Click
-        Dim nextDay As Integer
         Dim startDate As DateTime = DateTime.Parse(cal_venue.SelectedDate.Date.ToString("dd/MM/yyyy") + " " + drp_start_hr.Text + ":00 " + drp_start_ampm.Text)
         Dim endDate As DateTime = DateTime.Parse(cal_venue.SelectedDate.Date.ToString("dd/MM/yyyy") + " " + drp_end_hr.Text + ":00 " + drp_end_ampm.Text)
         If chk_next_day.Checked Then

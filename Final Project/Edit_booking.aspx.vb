@@ -62,7 +62,7 @@ Public Class Edit_bookingaspx
 
 
         loadUserCourtCmd.Parameters.Clear()
-        loadUserCourtCmd.Parameters.AddWithValue("uid", userId)
+        loadUserCourtCmd.Parameters.AddWithValue("uid", PubVar.userId)
 
         If Not IsPostBack Then
             Dim adapter As SqlDataAdapter = New SqlDataAdapter(loadUserCourtCmd)

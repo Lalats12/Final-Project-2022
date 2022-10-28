@@ -31,7 +31,7 @@
             Phone Numbers: <br />
             <asp:TextBox ID="txt_phoneNum" runat="server"></asp:TextBox>
             <br />
-                Verify Pin(max 6 digits): <br />
+                Verify Pin(max 6 digits)(Note it down, There is no way of recovery): <br />
             <asp:TextBox ID="txt_pin" runat="server"></asp:TextBox>
             <br />
             <asp:Button ID="btn_register" runat="server" Text="Register" />

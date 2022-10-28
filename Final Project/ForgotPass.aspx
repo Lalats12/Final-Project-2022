@@ -16,6 +16,7 @@
         <div class="auto-style1">
             <h1>Batminton Booking | Reset your password</h1>
         </div>
+        <div class="auto-style1">
         Username:<asp:TextBox ID="txt_user" runat="server"></asp:TextBox>
         <br />
         Email:<asp:TextBox ID="txt_email" runat="server"></asp:TextBox>
@@ -25,6 +26,7 @@
         <asp:Button ID="btn_reset" runat="server" Text="Check" />
     &nbsp;
         <asp:Button ID="btn_main_menu" runat="server" Text="Return to Log in screen" />
+        </div>
     </form>
 </body>
 </html>

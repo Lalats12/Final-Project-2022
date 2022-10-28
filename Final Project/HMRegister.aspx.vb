@@ -92,7 +92,7 @@ Public Class HMRegister
             Dim dr As DataRow = dt2.Rows(0)
 
             MsgBox("Success, welcome " + uname)
-            HM_id = dr("hm_id")
+            HMVars.HM_id = dr("hm_id")
             userName = uname
             Response.Redirect("ContratorPage.aspx")
         End If

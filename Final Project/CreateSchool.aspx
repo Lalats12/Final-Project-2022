@@ -20,7 +20,7 @@
             </div>
             <div class="auto-style1">
             School Name:<br /><asp:TextBox ID="txt_school" runat="server" AutoPostBack="True"></asp:TextBox><br />
-            School Location:<br /><asp:TextBox ID="txt_location" runat="server" Height="90px" Width="401px"></asp:TextBox><br />
+            School Location:<br /><asp:TextBox ID="txt_location" runat="server" Height="90px" Width="401px" TextMode="MultiLine"></asp:TextBox><br />
             School Tag(Change only if error):<br />
             <asp:TextBox ID="txt_tag" runat="server"></asp:TextBox><br />
             <asp:Button ID="btn_courts" runat="server" Text="To your courts" Enabled="False" />

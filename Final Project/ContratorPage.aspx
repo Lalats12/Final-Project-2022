@@ -17,7 +17,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div><asp:Label ID="Label1" runat="server" Text="Welcome" CssClass="absolute"></asp:Label></div>
+        <div><asp:Label ID="lbl_Welcome" runat="server" Text="Welcome" CssClass="absolute"></asp:Label></div>
         <div class="auto-style1"><h2>Batminton Booking | Headmaster Sector</h2>
         <asp:Label ID="lbl_signSchool" runat="server" Text="Your school is not signed up,"></asp:Label>
             <br />
@@ -27,10 +27,12 @@
             <asp:Panel ID="pnl_school" runat="server" Height="280px" Width="100%">
                 <br />
                 Your school name:<br />
-                <asp:TextBox ID="txt_school" runat="server" Enabled="False"></asp:TextBox>
+                <asp:TextBox ID="txt_school" runat="server" Enabled="False" AutoPostBack="True"></asp:TextBox>
                 <br />
                 Your school location:<br />
-                <asp:TextBox ID="txt_school_loc" runat="server" Enabled="False" Height="94px" Width="360px"></asp:TextBox>
+                <asp:TextBox ID="txt_school_loc" runat="server" Enabled="False" Height="94px" Width="360px" TextMode="MultiLine"></asp:TextBox>
+                <asp:Label ID="txt_invisible_loctag" runat="server" Visible="False"></asp:Label>
+                <asp:CheckBox ID="chk_sameLoc" runat="server" Text="Same location?" />
                 <br />
                 Your school tags:<br />
                 <asp:TextBox ID="txt_tag" runat="server" Enabled="False"></asp:TextBox>

@@ -97,7 +97,7 @@
                 <asp:ListItem>VISA</asp:ListItem>
             </asp:DropDownList>
             <br />
-            Card number(Vaild number: XXXX-XXXX-XXXX):<br />
+            Card number(Vaild number: XXXX-XXXX-XXXX-XXXX):<br />
             <asp:TextBox ID="txt_cardNum" runat="server"></asp:TextBox>
             <br />
             Expire date<br />
@@ -121,7 +121,7 @@
             <asp:Button ID="btn_edit" runat="server" Text="Edit" />
             &nbsp;&nbsp;
             <asp:Button ID="btn_return" runat="server" Text="Return to menu" />
-            <asp:Label ID="lbl_results" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="lbl_results" runat="server"></asp:Label>
         </div>
     </form>
 </body>

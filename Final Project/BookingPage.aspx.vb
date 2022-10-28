@@ -236,7 +236,7 @@ Public Class BookingPage
             Else
                 Dim dr As DataRow = dt3.Rows(0)
                 insertBooksCmd.Parameters.Clear()
-                insertBooksCmd.Parameters.AddWithValue("uid", userId)
+                insertBooksCmd.Parameters.AddWithValue("uid", PubVar.userId)
                 insertBooksCmd.Parameters.AddWithValue("cid", drp_court.SelectedValue)
                 insertBooksCmd.Parameters.AddWithValue("start", startDate)
                 insertBooksCmd.Parameters.AddWithValue("end", endDate)
@@ -279,7 +279,7 @@ Public Class BookingPage
             For i As Integer = 0 To dt.Rows.Count - 1
                 Dim dr As DataRow = dt.Rows(i)
                 Dim courtId As Integer = dr("court_id")
-                    Dim status As String = (i + 1).ToString
+                Dim status As String = (i + 1).ToString
                     drp_court.Items.Add(status + " (" + courtId.ToString + ")")
                 drp_court.Items.Item(1 + i).Value = courtId
             Next
