@@ -14,7 +14,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="auto-style1">
-            <h1>Batminton Booking | Booking management</h1>
+            <h1>badminton Booking | Booking management</h1>
             <asp:Button ID="btn_all" runat="server" Text="Select All" />
 &nbsp;
             <asp:Button ID="btn_selectSearch" runat="server" Text="Search By ID" />
@@ -55,7 +55,7 @@
                 <br />
                 <br />
                 Court:<br />
-                <asp:DropDownList ID="drp_courts" runat="server">
+                <asp:DropDownList ID="drp_courts" runat="server" AutoPostBack="True">
                 </asp:DropDownList>
                 <br />
                 <br />
@@ -70,6 +70,9 @@
                     <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
                     <WeekendDayStyle BackColor="#FFFFCC" />
                 </asp:Calendar>
+                Court Available At:
+                <asp:Label ID="lbl_courtTime" runat="server"></asp:Label>
+                <br />
                 Start Time:<br />
                 <asp:DropDownList ID="start_date_hr" runat="server">
                     <asp:ListItem Value="01"></asp:ListItem>

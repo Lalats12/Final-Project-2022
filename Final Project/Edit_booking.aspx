@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Batminton Booking | Edit your books</title>
+    <title>badminton Booking | Edit your books</title>
     <style>
         form{
             display:grid;
@@ -33,7 +33,7 @@
             <br />
             <br />
             <h2>Court Number</h2>
-            <asp:DropDownList ID="drp_court" runat="server">
+            <asp:DropDownList ID="drp_court" runat="server" AutoPostBack="True">
                 <asp:ListItem>(select)</asp:ListItem>
             </asp:DropDownList>
             <br />
@@ -50,6 +50,8 @@
                 <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <WeekendDayStyle BackColor="#FFFFCC" />
             </asp:Calendar>
+            Court Available At:
+            <asp:Label ID="lbl_courtTime" runat="server"></asp:Label>
             <br />
             Starts at:<br />
             <asp:DropDownList ID="start_time_hr" runat="server">

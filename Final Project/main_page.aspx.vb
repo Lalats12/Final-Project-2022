@@ -12,9 +12,8 @@ Public Class WebForm1
     Dim loadUserBookingCmd As SqlCommand
     Dim checkBookCmd As SqlCommand
     Dim checkCurrDayCmd As SqlCommand
-
-
-
+    Dim checkAvailaCmd As SqlCommand
+    Dim getCourtTimeCmd As SqlCommand
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim connStr As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\jpyea\source\repos\Final Project\Final Project\App_Data\badminton_database.mdf"";Integrated Security=True;Connect Timeout=30"
         conn = New SqlConnection(connStr)
@@ -40,6 +39,10 @@ Public Class WebForm1
                                          INNER JOIN Venues ON Venues.venue_id = Court.school_id"
         checkCurrDayCmd = New SqlCommand(checkCurrDaySql, conn)
 
+        Dim getCourtTimeSql As String = "SELECT status,time_open AS ""timeOpen"", time_close AS ""timeClose""
+                                         FROM Court WHERE school_id = @sci"
+        getCourtTimeCmd = New SqlCommand(getCourtTimeSql, conn)
+
         If Not IsPostBack Then
             Dim adapter As SqlDataAdapter = New SqlDataAdapter(loadVentureCmd)
             Dim ds As DataSet = New DataSet()
@@ -60,6 +63,31 @@ Public Class WebForm1
                     Dim SchoolTag As String = dr("school_tag")
                     Dim SchoolLocation As String = dr("school_address")
                     Dim SchoolAvailable As Integer = dr("school_available_courts")
+
+                    getCourtTimeCmd.Parameters.Clear()
+                    getCourtTimeCmd.Parameters.AddWithValue("sci", courtId)
+
+                    Dim coAdap As SqlDataAdapter = New SqlDataAdapter(getCourtTimeCmd)
+                    Dim coDs As DataSet = New DataSet
+                    coAdap.Fill(coDs, "courts")
+                    Dim coDt As DataTable = coDs.Tables("courts")
+
+                    If coDt.Rows.Count < 1 Then
+                        MsgBox("Unknown error, please try again")
+                    Else
+                        For j As Integer = 0 To coDt.Rows.Count - 1
+                            Dim coDr As DataRow = coDt.Rows(j)
+                            Dim sta As Boolean = coDr("status")
+                            Dim timeStart As DateTime = DateTime.Parse(Date.Now.ToString("dd/MM/yyyy") + " " + coDr("timeOpen").ToString)
+                            Dim timeEnd As DateTime = DateTime.Parse(Date.Now.ToString("dd/MM/yyyy") + " " + coDr("timeClose").ToString)
+                            Dim now As DateTime = Date.Now
+                            If Not ((timeStart <= now And
+                                     timeEnd >= now) And sta) Then
+                                SchoolAvailable -= 1
+                            End If
+                        Next
+                    End If
+
                     numCourtsAvailable += SchoolAvailable
                     Dim ven As TableCell = New TableCell
                     ven.Text = courtId

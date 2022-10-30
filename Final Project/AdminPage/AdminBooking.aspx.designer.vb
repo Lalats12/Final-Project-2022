@@ -194,6 +194,15 @@ Partial Public Class AdminBooking
     Protected WithEvents cal_Booking_date As Global.System.Web.UI.WebControls.Calendar
 
     '''<summary>
+    '''lbl_courtTime control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_courtTime As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''start_date_hr control.
     '''</summary>
     '''<remarks>

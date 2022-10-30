@@ -54,10 +54,10 @@
             <asp:Table ID="user_booked_tables" runat="server" CssClass="tables">
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server">Venue Id</asp:TableCell>
+                    <asp:TableCell runat="server">School Name</asp:TableCell>
                     <asp:TableCell runat="server">School Location</asp:TableCell>
                     <asp:TableCell runat="server">Start Date</asp:TableCell>
-                    <asp:TableCell runat="server">End date</asp:TableCell>
-                    <asp:TableCell runat="server">Payment Date</asp:TableCell>
+                    <asp:TableCell runat="server">End Date</asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
             <asp:Button ID="btn_edit" runat="server" Text="Edit your books" />
@@ -128,6 +128,7 @@
             <div class="venue">
             <asp:Table ID="available_venue" runat="server" CssClass="tables">
                 <asp:TableRow runat="server">
+                    <asp:TableCell runat="server">School ID</asp:TableCell>
                     <asp:TableCell ID="th_name" runat="server">School Name</asp:TableCell>
                     <asp:TableCell ID="th_school" runat="server">School Location</asp:TableCell>
                     <asp:TableCell ID="th_curr" runat="server">Courts</asp:TableCell>

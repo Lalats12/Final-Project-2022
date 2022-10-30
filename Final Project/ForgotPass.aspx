@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Batminton Booking | Password Reset</title>
+    <title>badminton Booking | Password Reset</title>
     <style type="text/css">
         .auto-style1 {
             text-align: center;
@@ -14,7 +14,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="auto-style1">
-            <h1>Batminton Booking | Reset your password</h1>
+            <h1>badminton Booking | Reset your password</h1>
         </div>
         <div class="auto-style1">
         Username:<asp:TextBox ID="txt_user" runat="server"></asp:TextBox>

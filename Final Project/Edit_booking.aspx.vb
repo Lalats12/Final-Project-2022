@@ -1,4 +1,10 @@
 ﻿Imports System.Data.SqlClient
+
+Public Module editVar
+    Public timeStart As String = ""
+    Public timeEnd As String = ""
+End Module
+
 Public Class Edit_bookingaspx
     Inherits System.Web.UI.Page
     Dim conn As SqlConnection
@@ -7,6 +13,7 @@ Public Class Edit_bookingaspx
     Dim getPaymentCmd As SqlCommand
     Dim editPaymentCmd As SqlCommand
     Dim checkBooksCmd As SqlCommand
+    Dim getTimeCmd As SqlCommand
     Dim editUserCourtCmd As SqlCommand
     Dim loadUserCourtCmd As SqlCommand
     Dim loadIndCourtCmd As SqlCommand
@@ -49,6 +56,9 @@ Public Class Edit_bookingaspx
                                       FROM Venues INNER JOIN Court ON Venues.venue_id = court.school_id
                                       WHERE school_tag = @schtag AND Court.status = 1"
         getCourtsCmd = New SqlCommand(getCourtsSql, conn)
+
+        Dim getTimeSql As String = "SELECT time_open, time_close FROM Court WHERE court_id = @cid"
+        getTimeCmd = New SqlCommand(getTimeSql, conn)
 
         Dim getPaymentSql As String = "SELECT payment_id
                                        FROM Payment
@@ -137,8 +147,6 @@ Public Class Edit_bookingaspx
                 nextDay = 1
             End If
 
-
-
             If (DateDiff("h", startDate, endDate) > 3) Then
                 MsgBox("The maximum allocated time is 3 hours")
                 Exit Sub
@@ -161,6 +169,14 @@ Public Class Edit_bookingaspx
 
             If txt_donate.Text < 5 Then
                 MsgBox("Please follow the instructions specified(Payment)")
+                Exit Sub
+            End If
+
+            Dim timeStart As DateTime = DateTime.Parse(booking_date + " " + editVar.timeStart)
+            Dim timeEnd As DateTime = DateTime.Parse(booking_date + " " + editVar.timeEnd)
+
+            If Not (DateDiff("h", timeStart, startDate) >= 0 And DateDiff("h", timeEnd, endDate) <= 0) Then
+                MsgBox("Error, the time you submitted has exceeded the time the court is available")
                 Exit Sub
             End If
 
@@ -315,5 +331,29 @@ Public Class Edit_bookingaspx
                 drp_court.Items.Item(1 + i).Value = courtId
             Next
         End If
+    End Sub
+
+    Protected Sub drp_court_SelectedIndexChanged(sender As Object, e As EventArgs) Handles drp_court.SelectedIndexChanged
+        Dim value As Integer = drp_court.SelectedValue
+        getTimeCmd.Parameters.Clear()
+        getTimeCmd.Parameters.AddWithValue("cid", value)
+
+        Dim adap As SqlDataAdapter = New SqlDataAdapter(getTimeCmd)
+        Dim ds As DataSet = New DataSet
+        adap.Fill(ds, "time")
+        Dim dt As DataTable = ds.Tables("time")
+
+        If dt.Rows.Count < 1 Then
+            MsgBox("Error when fetching data")
+        Else
+            Dim dr As DataRow = dt.Rows(0)
+            Dim timeStart As String = dr("time_open").ToString
+            Dim timeEnd As String = dr("time_close").ToString
+            editVar.timeStart = timeStart
+            editVar.timeEnd = timeEnd
+            Dim strJoin = timeStart + " - " + timeEnd
+            lbl_courtTime.Text = strJoin
+        End If
+
     End Sub
 End Class

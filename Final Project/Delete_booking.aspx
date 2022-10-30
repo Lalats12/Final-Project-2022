@@ -13,7 +13,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <h1 class="auto-style1">Batminton Booking | Delete</h1>
+        <h1 class="auto-style1">badminton Booking | Delete</h1>
         <div class="auto-style1">
         <br />
         <asp:ListBox ID="lst_booking" runat="server" Height="159px" Width="222px" AutoPostBack="True"></asp:ListBox>

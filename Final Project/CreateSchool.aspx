@@ -14,7 +14,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="auto-style1">
-            <h2 class="auto-style1">Batminton Booking | Add your school</h2>
+            <h2 class="auto-style1">badminton Booking | Add your school</h2>
             <div class="auto-style1">
             <br />
             </div>

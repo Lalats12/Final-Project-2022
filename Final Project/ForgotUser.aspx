@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Batminton Booking | Forgot username</title>
+    <title>badminton Booking | Forgot username</title>
     <style type="text/css">
         .auto-style1 {
             text-align: center;
@@ -14,7 +14,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="auto-style1">
-            <h2>Batminton Booking | Forgot username</h2>
+            <h2>badminton Booking | Forgot username</h2>
             Email: <asp:TextBox ID="txt_email" runat="server"></asp:TextBox><br />
             Numbers:<asp:TextBox ID="txt_numbers" runat="server"></asp:TextBox><br />
             <asp:Button ID="btn_find" runat="server" Text="Find username" />

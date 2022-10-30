@@ -14,7 +14,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="auto-style1">
-            <h1 >Batminton Booking | Forgot Password</h1>
+            <h1 >badminton Booking | Forgot Password</h1>
             <br />Username:&nbsp;&nbsp;
             <asp:TextBox ID="txt_username" runat="server"></asp:TextBox>
             <br />

@@ -19,10 +19,11 @@ Public Class CreateCourts
 
         lbl_invisiSchool.Text = HM_school
 
-        Dim loadCourtsSql As String = "SELECT court_id, status FROM Court INNER JOIN Venues ON Court.school_id = Venues.venue_id WHERE school_id = @sh"
+        Dim loadCourtsSql As String = "SELECT court_id, status, time_open, time_close 
+                                       FROM Court INNER JOIN Venues ON Court.school_id = Venues.venue_id WHERE school_id = @sh"
         loadCourtsCmd = New SqlCommand(loadCourtsSql, conn)
 
-        Dim loadStatusSql As String = "SELECT status FROM Court INNER JOIN Venues ON Court.school_id = Venues.venue_id WHERE court_id = @cid"
+        Dim loadStatusSql As String = "SELECT status,time_open, time_close FROM Court INNER JOIN Venues ON Court.school_id = Venues.venue_id WHERE court_id = @cid"
         loadStatusCmd = New SqlCommand(loadStatusSql, conn)
 
         Dim checkCourtsSql As String = "SELECT booking_id, user_id, booking_date_start,booking_date_end
@@ -35,10 +36,10 @@ Public Class CreateCourts
                                       WHERE hm_id = @hi"
         checkUserCmd = New SqlCommand(checkUserSql, conn)
 
-        Dim addCourtSql As String = "INSERT INTO Court(school_id, status) VALUES(@sch,1)"
+        Dim addCourtSql As String = "INSERT INTO Court(school_id, status, time_open, time_close) VALUES(@sch,1,@to, @tc)"
         addCourtCmd = New SqlCommand(addCourtSql, conn)
 
-        Dim updateCourtSql As String = "UPDATE Court SET status = @sta WHERE court_id = @coid"
+        Dim updateCourtSql As String = "UPDATE Court SET status = @sta, time_open = @to, time_close = @tc WHERE court_id = @coid"
         updateCourtCmd = New SqlCommand(updateCourtSql, conn)
 
         Dim getSchoolSql As String = "SELECT school_available_courts
@@ -121,6 +122,11 @@ Public Class CreateCourts
             Else
                 drp_availa.Text = 0
             End If
+            Dim timeStart As String = dr("time_open").ToString
+            Dim timeEnd As String = dr("time_close").ToString
+
+            drp_start_time.Text = timeStart
+            drp_end_time.Text = timeEnd
         End If
 
     End Sub
@@ -247,6 +253,9 @@ Public Class CreateCourts
             schNum = dr2("school_available_courts")
         End If
 
+        Dim timeStart As DateTime = DateTime.Parse(drp_start_time.SelectedValue + ": 00")
+        Dim timeEnd As DateTime = DateTime.Parse(drp_end_time.SelectedValue + ": 00")
+
         If dt.Rows.Count < 1 Then
             MsgBox("Error detected, please try again")
         Else
@@ -254,6 +263,8 @@ Public Class CreateCourts
             If veri.CompareTo(dr("verify")) = 0 Then
                 addCourtCmd.Parameters.Clear()
                 addCourtCmd.Parameters.AddWithValue("sch", HM_school)
+                addCourtCmd.Parameters.AddWithValue("to", timeStart)
+                addCourtCmd.Parameters.AddWithValue("tc", timeEnd)
 
                 schNum += 1
                 updateSchoolCmd.Parameters.Clear()
@@ -340,9 +351,14 @@ Public Class CreateCourts
             Exit Sub
         End If
 
+        Dim timeStart As DateTime = DateTime.Parse(drp_start_time.SelectedValue + ": 00")
+        Dim timeEnd As DateTime = DateTime.Parse(drp_end_time.SelectedValue + ": 00")
+
         updateCourtCmd.Parameters.Clear()
         updateCourtCmd.Parameters.AddWithValue("sta", sta)
         updateCourtCmd.Parameters.AddWithValue("coid", drp_courts.SelectedValue)
+        updateCourtCmd.Parameters.AddWithValue("to", timeStart)
+        updateCourtCmd.Parameters.AddWithValue("tc", timeEnd)
 
 
         Dim rowsAff As Integer = updateCourtCmd.ExecuteNonQuery()

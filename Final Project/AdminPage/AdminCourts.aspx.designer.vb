@@ -50,6 +50,24 @@ Partial Public Class SchoolCourts
     Protected WithEvents drp_availa As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''drp_start_time control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents drp_start_time As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''drp_end_time control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents drp_end_time As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''btn_add control.
     '''</summary>
     '''<remarks>

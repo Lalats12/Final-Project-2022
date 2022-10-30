@@ -15,13 +15,13 @@
     <form id="form1" runat="server">
         <div class="auto-style1">
         <div class="auto-style1">
-            <h2 class="auto-style1">Batminton Booking | Special user login</h2>
+            <h2 class="auto-style1">badminton Booking | Special user login</h2>
             <p class="auto-style1">UserName:</p>
             <asp:TextBox ID="txt_username" runat="server"></asp:TextBox>
             <p class="auto-style1">Password:</p>
             <asp:TextBox ID="txt_pass" runat="server" TextMode="Password"></asp:TextBox>
             <br />
-            <asp:HyperLink ID="hyperlink1" runat="server">Forgotten Password?</asp:HyperLink>
+            <asp:HyperLink ID="hyperlink1" runat="server" NavigateUrl="~/HMForgotPass.aspx">Forgotten Password?</asp:HyperLink>
         </div>
             <asp:Button ID="btn_login" runat="server" Text="Login" />
 &nbsp;

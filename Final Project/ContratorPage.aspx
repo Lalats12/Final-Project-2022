@@ -18,7 +18,7 @@
 <body>
     <form id="form1" runat="server">
         <div><asp:Label ID="lbl_Welcome" runat="server" Text="Welcome" CssClass="absolute"></asp:Label></div>
-        <div class="auto-style1"><h2>Batminton Booking | Headmaster Sector</h2>
+        <div class="auto-style1"><h2>badminton Booking | Headmaster Sector</h2>
         <asp:Label ID="lbl_signSchool" runat="server" Text="Your school is not signed up,"></asp:Label>
             <br />
             <asp:Button ID="btn_signSchool" runat="server" Text="Sign up now" />

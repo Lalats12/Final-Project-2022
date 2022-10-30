@@ -138,6 +138,7 @@
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\jquery-3.6.0.slim.js" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
+    <Content Include="Starting_Page.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -182,7 +183,7 @@
     </Compile>
     <Compile Include="BookingPage.aspx.vb">
       <DependentUpon>BookingPage.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ContratorPage.aspx.designer.vb">
       <DependentUpon>ContratorPage.aspx</DependentUpon>
@@ -301,6 +302,13 @@
     </Compile>
     <Compile Include="Register_page.aspx.vb">
       <DependentUpon>Register_page.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Starting_Page.aspx.designer.vb">
+      <DependentUpon>Starting_Page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Starting_Page.aspx.vb">
+      <DependentUpon>Starting_Page.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>

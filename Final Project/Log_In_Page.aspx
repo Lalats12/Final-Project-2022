@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Batminton Booking Page | Login</title>
+    <title>badminton Booking Page | Login</title>
     <style type="text/css">
         .auto-style1 {
             text-align: center;
@@ -13,7 +13,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <h1 class="auto-style1">Batminton Booking Page Area</h1>
+        <h1 class="auto-style1">Badminton Booking | User login</h1>
         <div style="display:grid; place-items:center">
             Username:<asp:TextBox ID="txt_username" runat="server" MaxLength="48"></asp:TextBox>
             <br />

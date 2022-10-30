@@ -30,7 +30,7 @@ Public Class SchoolCourts
                                     WHERE court_id = @id"
         loadAvaCmd = New SqlCommand(loadAvaSql, conn)
 
-        Dim addCourtSql As String = "INSERT INTO Court(school_id, status) VALUES(@id,1)"
+        Dim addCourtSql As String = "INSERT INTO Court(school_id, status, time_open, time_close) VALUES(@id,1, @to, @tc)"
         addCourtCmd = New SqlCommand(addCourtSql, conn)
 
         Dim getSchoolIdSql As String = "SELECT venue_id, school_available_courts
@@ -41,7 +41,7 @@ Public Class SchoolCourts
         Dim updateSchoolSql As String = "UPDATE Venues SET school_available_courts = @sac WHERE venue_id = @ven"
         updateSchoolCmd = New SqlCommand(updateSchoolSql, conn)
 
-        Dim updateCourtsSql As String = "UPDATE Court SET status = @s WHERE court_id = @cid "
+        Dim updateCourtsSql As String = "UPDATE Court SET status = @s, time_open = @to, time_close = @tc WHERE court_id = @cid"
         updateCourtsCmd = New SqlCommand(updateCourtsSql, conn)
 
         Dim checkCourtsSql As String = "SELECT booking_id
@@ -110,6 +110,9 @@ Public Class SchoolCourts
         checkCourtsCmd.Parameters.Clear()
         checkCourtsCmd.Parameters.AddWithValue("id", court)
 
+        Dim timeStart As DateTime = DateTime.Parse(drp_start_time.SelectedValue + ": 00")
+        Dim timeEnd As DateTime = DateTime.Parse(drp_end_time.SelectedValue + ": 00")
+
         Dim adap As SqlDataAdapter = New SqlDataAdapter(checkCourtsCmd)
         Dim ds As DataSet = New DataSet
         adap.Fill(ds, "courts")
@@ -125,6 +128,8 @@ Public Class SchoolCourts
         updateCourtsCmd.Parameters.Clear()
         updateCourtsCmd.Parameters.AddWithValue("s", status)
         updateCourtsCmd.Parameters.AddWithValue("cid", court)
+        updateCourtsCmd.Parameters.AddWithValue("to", timeStart)
+        updateCourtsCmd.Parameters.AddWithValue("tc", timeEnd)
 
         Dim rowsAff As Integer = updateCourtsCmd.ExecuteNonQuery
         If rowsAff < 1 Then
@@ -180,15 +185,43 @@ Public Class SchoolCourts
             Exit Sub
         End If
 
+        getSchoolIdCmd.Parameters.Clear()
+        getSchoolIdCmd.Parameters.AddWithValue("tag", drp_schools.SelectedValue)
+
+        Dim adap2 As SqlDataAdapter = New SqlDataAdapter(getSchoolIdCmd)
+        Dim ds2 As DataSet = New DataSet
+        adap2.Fill(ds2, "id")
+        Dim dt2 As DataTable = ds2.Tables("id")
+
+        If dt2.Rows.Count < 1 Then
+            MsgBox("Error related to fetching id")
+            Exit Sub
+        End If
+
+        Dim dr2 As DataRow = dt2.Rows(0)
+        Dim id As Integer = dr2("venue_id")
+        Dim nums As Integer = dr2("school_available_courts")
+        nums -= 1
+
+        updateSchoolCmd.Parameters.Clear()
+        updateSchoolCmd.Parameters.AddWithValue("ven", ID)
+        updateSchoolCmd.Parameters.AddWithValue("sac", nums)
+
         deleteCourtsCmd.Parameters.Clear()
         deleteCourtsCmd.Parameters.AddWithValue("cid", court)
 
         Dim rowsAff As Integer = deleteCourtsCmd.ExecuteNonQuery
+        Dim rowsAff2 As Integer = updateSchoolCmd.ExecuteNonQuery
+
         If rowsAff < 1 Then
             MsgBox("Error related to rowsAff")
         Else
-            MsgBox("Success, refreshing")
-            Response.Redirect("AdminCourts.aspx")
+            If rowsAff2 < 1 Then
+                MsgBox("Error related to rowsAff2")
+            Else
+                MsgBox("Success, refreshing")
+                Response.Redirect("AdminCourts.aspx")
+            End If
         End If
 
     End Sub
@@ -196,6 +229,9 @@ Public Class SchoolCourts
     Protected Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
         getSchoolIdCmd.Parameters.Clear()
         getSchoolIdCmd.Parameters.AddWithValue("tag", drp_schools.SelectedValue)
+
+        Dim timeStart As DateTime = DateTime.Parse(drp_start_time.SelectedValue + ": 00")
+        Dim timeEnd As DateTime = DateTime.Parse(drp_end_time.SelectedValue + ": 00")
 
         Dim adap As SqlDataAdapter = New SqlDataAdapter(getSchoolIdCmd)
         Dim ds As DataSet = New DataSet
@@ -209,7 +245,10 @@ Public Class SchoolCourts
 
         Dim dr As DataRow = dt.Rows(0)
         Dim id As Integer = dr("venue_id")
-        Dim nums As Integer = dr("school_available_courts")
+        Dim nums As Integer = 0
+        If Not IsDBNull(dr("school_available_courts")) Then
+            nums = dr("school_available_courts")
+        End If
         nums += 1
 
         updateSchoolCmd.Parameters.Clear()
@@ -218,6 +257,8 @@ Public Class SchoolCourts
 
         addCourtCmd.Parameters.Clear()
         addCourtCmd.Parameters.AddWithValue("id", id)
+        addCourtCmd.Parameters.AddWithValue("to", timeStart)
+        addCourtCmd.Parameters.AddWithValue("tc", timeEnd)
 
         Dim rowsAff As Integer = addCourtCmd.ExecuteNonQuery
         If rowsAff < 1 Then

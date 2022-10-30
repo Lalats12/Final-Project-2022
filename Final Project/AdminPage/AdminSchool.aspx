@@ -14,7 +14,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="auto-style1">
-            <h1>Batminton Booking | Schools page</h1>
+            <h1>badminton Booking | Schools page</h1>
             <asp:Button ID="btn_allSchools" runat="server" Text="List all schools" />
 &nbsp;
             <asp:Button ID="btn_byID" runat="server" Text="Search by ID" />

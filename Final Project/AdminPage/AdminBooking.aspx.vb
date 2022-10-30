@@ -1,4 +1,10 @@
 ﻿Imports System.Data.SqlClient
+
+Public Module adminBook
+    Public timeStart As String = ""
+    Public timeEnd As String = ""
+End Module
+
 Public Class AdminBooking
     Inherits System.Web.UI.Page
     Dim conn As SqlConnection
@@ -8,6 +14,7 @@ Public Class AdminBooking
     Dim loadCourtsCmd As SqlCommand
     Dim courtSearchCmd As SqlCommand
     Dim checkBooksCmd As SqlCommand
+    Dim getTimeCmd As SqlCommand
     Dim updateBookingCmd As SqlCommand
     Dim updatePaymentCmd As SqlCommand
     Dim deleteBookingCmd As SqlCommand
@@ -57,6 +64,9 @@ Public Class AdminBooking
                                                              booking_date_end = @bde, booking_next_day = @bnd
                                           WHERE booking_id = @bid"
         updateBookingCmd = New SqlCommand(updateBookingSql, conn)
+
+        Dim getTimeSql As String = "SELECT time_open, time_close FROM Court WHERE court_id = @cid"
+        getTimeCmd = New SqlCommand(getTimeSql, conn)
 
         Dim updatePaymentSql As String = "UPDATE Payment SET card_bank = @cb, card_num = @cn, expire_date = @ed, security_num = @sec, price_amount = @pd
                                           WHERE payment_id = @pid"
@@ -321,6 +331,14 @@ Public Class AdminBooking
             Exit Sub
         End If
 
+        Dim timeStart As DateTime = DateTime.Parse(booking_date + " " + editVar.timeStart)
+        Dim timeEnd As DateTime = DateTime.Parse(booking_date + " " + editVar.timeEnd)
+
+        If Not (DateDiff("h", timeStart, startDate) >= 0 And DateDiff("h", timeEnd, endDate) <= 0) Then
+            MsgBox("Error, the time you submitted has exceeded the time the court is available")
+            Exit Sub
+        End If
+
         checkBooksCmd.Parameters.Clear()
         checkBooksCmd.Parameters.AddWithValue("coid", drp_courts.SelectedValue)
 
@@ -340,7 +358,7 @@ Public Class AdminBooking
                 If (startDate >= dr("booking_date_start") And endDate <= dr("booking_date_end")) OrElse
                    ((startDate >= dr("booking_date_start") And startDate <= dr("booking_date_end")) And DateDiff("h", dr("booking_date_end"), endDate) >= 0) OrElse
                    ((endDate <= dr("booking_date_end") And endDate >= dr("booking_date_start")) And DateDiff("h", startDate, dr("booking_date_start")) <= 0) OrElse
-                   ((DateDiff("h", dr("booking_date_end"), endDate) >= 1) And DateDiff("h", dr("booking_date_start"), startDate) >= 1) Then
+                   ((DateDiff("h", dr("booking_date_end"), endDate) >= 0) And DateDiff("h", dr("booking_date_start"), startDate) <= 0) Then
                     MsgBox("Booking collision detected. Please try again")
                     Exit Sub
                 End If
@@ -517,5 +535,28 @@ Public Class AdminBooking
         Catch ex As Exception
             MsgBox("Error, unknown error")
         End Try
+    End Sub
+
+    Protected Sub drp_courts_SelectedIndexChanged(sender As Object, e As EventArgs) Handles drp_courts.SelectedIndexChanged
+        Dim value As Integer = drp_courts.SelectedValue
+        getTimeCmd.Parameters.Clear()
+        getTimeCmd.Parameters.AddWithValue("cid", value)
+
+        Dim adap As SqlDataAdapter = New SqlDataAdapter(getTimeCmd)
+        Dim ds As DataSet = New DataSet
+        adap.Fill(ds, "time")
+        Dim dt As DataTable = ds.Tables("time")
+
+        If dt.Rows.Count < 1 Then
+            MsgBox("Error when fetching data")
+        Else
+            Dim dr As DataRow = dt.Rows(0)
+            Dim timeStart As String = dr("time_open").ToString
+            Dim timeEnd As String = dr("time_close").ToString
+            adminBook.timeStart = timeStart
+            adminBook.timeEnd = timeEnd
+            Dim strJoin = timeStart + " - " + timeEnd
+            lbl_courtTime.Text = strJoin
+        End If
     End Sub
 End Class

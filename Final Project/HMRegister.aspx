@@ -14,7 +14,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="auto-style1">
-            <h2 class="auto-style1">Batminton Booking| Headmaster Register</h2>
+            <h2 class="auto-style1">badminton Booking| Headmaster Register</h2>
             <div class="auto-style1">
             Username:
             <br />
@@ -23,6 +23,10 @@
             Password:
             <br />
             <asp:TextBox ID="txt_pass" runat="server"></asp:TextBox>
+            <br />
+                Re-enter password:
+            <br />
+            <asp:TextBox ID="txt_repass" runat="server"></asp:TextBox>
             <br />
             Email:
             <br />

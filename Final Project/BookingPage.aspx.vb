@@ -1,11 +1,18 @@
 ﻿Imports System.Data.SqlClient
 
+Public Module BookVar
+    Public timeStart As String = ""
+    Public timeEnd As String = ""
+End Module
+
+
 Public Class BookingPage
     Inherits System.Web.UI.Page
     Dim conn As SqlConnection
     Dim loadCourtsCmd As SqlCommand
     Dim loadNameCmd As SqlCommand
     Dim getCourtsCmd As SqlCommand
+    Dim getTimeCmd As SqlCommand
     Dim checkUserCmd As SqlCommand
     Dim checkBooksCmd As SqlCommand
     Dim insertPaymentCmd As SqlCommand
@@ -37,6 +44,9 @@ Public Class BookingPage
         Dim checkUserSql As String = "SELECT booking_id, booking.user_id, school_name, booking.court_id, booking_date_start, booking_date_end, school_address
                                       FROM booking INNER JOIN Court ON Court.court_id = booking.court_id INNER JOIN user_data ON booking.user_id = user_data.user_id 
                                       INNER JOIN Venues ON Venues.venue_id = Court.school_id INNER JOIN Locations ON Locations.location_id = Venues.school_location"
+
+        Dim getTimeSql As String = "SELECT time_open, time_close FROM Court WHERE court_id = @cid"
+        getTimeCmd = New SqlCommand(getTimeSql, conn)
 
         Dim checkBooksSql As String = "SELECT booking_id,booking_date_start, booking_date_end 
                                        FROM booking
@@ -137,11 +147,11 @@ Public Class BookingPage
             Dim nowDate As DateTime = Date.Now()
             Dim booking_date As String = cal_booking_date.SelectedDate.Date.ToString("dd/MM/yyyy")
             Dim expire_date As String = cal_expire_date.SelectedDate.Date.ToString("dd/MM/yyyy")
-            If booking_date < Date.Now.ToString("dd/MM/yyyy") Then
+            If DateTime.Parse(booking_date) < Date.Now Then
                 MsgBox("The date you inputted is behind the current date.")
                 Exit Sub
             End If
-            If booking_date > Date.Now.AddMonths(3) Then
+            If DateTime.Parse(booking_date) > Date.Now.AddMonths(3) Then
                 MsgBox("The date you entered is exceeded the limits of booking(3 months)")
             End If
             Dim expireDate As DateTime = DateTime.Parse(expire_date)
@@ -157,7 +167,6 @@ Public Class BookingPage
                 nextDay = 1
             End If
 
-            MsgBox(startDate.ToString + " " + endDate.ToString)
             If (DateDiff("h", startDate, endDate) > 3) Then
                 MsgBox("The maximum allocated time is 3 hours")
                 Exit Sub
@@ -180,6 +189,14 @@ Public Class BookingPage
 
             If txt_donate.Text < 5 Then
                 MsgBox("Please follow the instructions specified")
+                Exit Sub
+            End If
+
+            Dim timeStart As DateTime = DateTime.Parse(booking_date + " " + BookVar.timeStart)
+            Dim timeEnd As DateTime = DateTime.Parse(booking_date + " " + BookVar.timeEnd)
+
+            If Not (DateDiff("h", timeStart, startDate) >= 0 And DateDiff("h", timeEnd, endDate) <= 0) Then
+                MsgBox("Error, the time you submitted has exceeded the time the court is available")
                 Exit Sub
             End If
 
@@ -289,5 +306,29 @@ Public Class BookingPage
     Protected Sub btn_return_Click(sender As Object, e As EventArgs) Handles btn_return.Click
         tags = "None"
         Response.Redirect("main_page.aspx")
+    End Sub
+
+    Protected Sub drp_court_SelectedIndexChanged(sender As Object, e As EventArgs) Handles drp_court.SelectedIndexChanged
+        Dim value As Integer = drp_court.SelectedValue
+        getTimeCmd.Parameters.Clear()
+        getTimeCmd.Parameters.AddWithValue("cid", value)
+
+        Dim adap As SqlDataAdapter = New SqlDataAdapter(getTimeCmd)
+        Dim ds As DataSet = New DataSet
+        adap.Fill(ds, "time")
+        Dim dt As DataTable = ds.Tables("time")
+
+        If dt.Rows.Count < 1 Then
+            MsgBox("Error when fetching data")
+        Else
+            Dim dr As DataRow = dt.Rows(0)
+            Dim timeStart As String = dr("time_open").ToString
+            Dim timeEnd As String = dr("time_close").ToString
+            BookVar.timeStart = timeStart
+            BookVar.timeEnd = timeEnd
+            Dim strJoin = timeStart + " - " + timeEnd
+            lbl_courtTime.Text = strJoin
+        End If
+
     End Sub
 End Class

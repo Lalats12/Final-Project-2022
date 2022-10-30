@@ -24,6 +24,7 @@ Public Class Register_page
         Dim email As String = txt_email.Text.ToString
         Dim user As String = txt_username.Text.ToString
         Dim pass As String = txt_pass.Text.ToString
+        Dim repass As String = txt_repass.Text.ToString
         Dim num As String = txt_num.Text.ToString
 
         If Not regexEmail.IsMatch(email) Then
@@ -36,6 +37,11 @@ Public Class Register_page
         End If
         If Not regexPass.IsMatch(pass) Then
             MsgBox("Error, the password needs to have at least: One special character, One lowercase and uppercase character, and one number")
+            Exit Sub
+        End If
+
+        If Not repass.CompareTo(pass) = 0 Then
+            MsgBox("Error, the passwords are not the same")
             Exit Sub
         End If
 
@@ -76,6 +82,13 @@ Public Class Register_page
         Else
             MsgBox("Somethings wrong")
         End If
-
     End Sub
+
+    Protected Function CheckEmpty()
+        If txt_username.Text = "" Or txt_repass.Text = "" Or txt_pass.Text = "" Or txt_num.Text = "" Or txt_email.Text = "" Then
+            Return False
+        End If
+        Return True
+    End Function
+
 End Class

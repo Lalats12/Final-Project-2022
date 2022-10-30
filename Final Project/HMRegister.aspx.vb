@@ -36,9 +36,14 @@ Public Class HMRegister
     Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles btn_register.Click
         Dim uname As String = txt_username.Text
         Dim upass As String = txt_pass.Text
+        Dim repass As String = txt_repass.Text
         Dim unum As String = txt_phoneNum.Text
         Dim uemail As String = txt_email.Text
         Dim uveri As String = txt_pin.Text
+
+        If Not checkEmpty() Then
+            MsgBox("Some of the boxes are empty. Please try again")
+        End If
 
         If Not regexEmail.IsMatch(uemail) Then
             MsgBox("Invalid Email address, please try again")
@@ -52,6 +57,11 @@ Public Class HMRegister
 
         If Not regexVeri.IsMatch(uveri) Then
             MsgBox("Invalid Pin numbers, enter 6 digits")
+            Exit Sub
+        End If
+
+        If Not upass.CompareTo(repass) = 0 Then
+            MsgBox("Passwords are not the same, please try again")
             Exit Sub
         End If
 
@@ -97,10 +107,14 @@ Public Class HMRegister
             Response.Redirect("ContratorPage.aspx")
         End If
 
-
-
-
-
-
     End Sub
+    Protected Function checkEmpty()
+        If txt_email.Text = "" Or
+           txt_pass.Text = "" Or txt_phoneNum.Text = "" Or
+           txt_pin.Text = "" Or txt_repass.Text = "" Or txt_username.Text = "" Then
+            Return False
+        End If
+        Return True
+    End Function
+
 End Class
