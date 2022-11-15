@@ -7,12 +7,18 @@ Public Class AdminSchool
     Dim loadTagSchoolCmd As SqlCommand
     Dim updateSchoolCmd As SqlCommand
     Dim updateLocationCmd As SqlCommand
+    Dim updateHMCmd As SqlCommand
     Dim checkHMSchoolCmd As SqlCommand
+    Dim checkBookingCmd As SqlCommand
+    Dim deleteCourtCmd As SqlCommand
     Dim deleteSchoolCmd As SqlCommand
     Dim deleteLocationCmd As SqlCommand
-    Dim updateHMSchoolCmd As SqlCommand
+    Dim deleteOwnerCmd As SqlCommand
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Session("IsAdmin") Is Nothing Then
+            Server.Transfer("../Starting_Page.aspx")
+        End If
         Dim connStr As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\jpyea\source\repos\Final Project\Final Project\App_Data\badminton_database.mdf"";Integrated Security=True"
         conn = New SqlConnection(connStr)
         conn.Open()
@@ -22,13 +28,13 @@ Public Class AdminSchool
 
         Dim loadOneSchoolSql As String = "SELECT * 
                                           FROM Venues INNER JOIN Locations ON Locations.location_id = Venues.school_location
-                                          INNER JOIN AdminHead ON AdminHead.school_num = Venues.venue_id
+                                          INNER JOIN Owner ON Owner.owner_id = Venues.owner_id
                                           WHERE venue_id = @id"
         loadOneSchoolCmd = New SqlCommand(loadOneSchoolSql, conn)
 
         Dim loadTagSchoolSql As String = "SELECT * FROM Venues 
                                           INNER JOIN Locations ON Locations.location_id = Venues.school_location
-                                          INNER JOIN AdminHead ON AdminHead.school_num = Venues.venue_id
+                                          INNER JOIN Owner ON Owner.owner_id = Venues.owner_id
                                           WHERE school_tag = @tag"
         loadTagSchoolCmd = New SqlCommand(loadTagSchoolSql, conn)
 
@@ -38,12 +44,23 @@ Public Class AdminSchool
 
         Dim checkHMSchoolSql As String = "SELECT * FROM Venues 
                                           INNER JOIN Locations ON Locations.location_id = Venues.school_location
-                                          INNER JOIN AdminHead ON AdminHead.school_num = Venues.venue_id
+                                          INNER JOIN Owner ON Owner.owner_id = Venues.owner_id
                                           WHERE school_name = @sch OR school_tag = @tag OR school_address = @add"
         checkHMSchoolCmd = New SqlCommand(checkHMSchoolSql, conn)
 
         Dim updateLocationSql As String = "UPDATE Locations SET school_address = @schadd WHERE location_id = @id"
         updateLocationCmd = New SqlCommand(updateLocationSql, conn)
+
+        Dim updateHMSql As String = "UPDATE Owner SET owner_name = @on, owner_email = @oe, owner_phone = @op WHERE owner_id = @oid"
+        updateHMCmd = New SqlCommand(updateHMSql, conn)
+
+        Dim checkCourtSql As String = "SELECT * 
+                                       FROM booking INNER JOIN Court ON booking.court_id = court.court_id
+                                       WHERE court.school_id = @sid"
+        checkBookingCmd = New SqlCommand(checkCourtSql, conn)
+
+        Dim deleteCourtsSql As String = "DELETE Court WHERE school_id = @sid"
+        deleteCourtCmd = New SqlCommand(deleteCourtsSql, conn)
 
         Dim deleteSchoolSql As String = "DELETE Venues WHERE venue_id = @id"
         deleteSchoolCmd = New SqlCommand(deleteSchoolSql, conn)
@@ -51,8 +68,8 @@ Public Class AdminSchool
         Dim deleteLocationSql As String = "DELETE Locations WHERE location_id = @id"
         deleteLocationCmd = New SqlCommand(deleteLocationSql, conn)
 
-        Dim updateHMSchoolSql As String = "UPDATE AdminHead SET school_num = NULL WHERE hm_id = @hid"
-        updateHMSchoolCmd = New SqlCommand(updateHMSchoolSql, conn)
+        Dim deleteOwnerSql As String = "DELETE Owner WHERE owner_id = @own"
+        deleteOwnerCmd = New SqlCommand(deleteOwnerSql, conn)
 
     End Sub
 
@@ -103,21 +120,32 @@ Public Class AdminSchool
             MsgBox("Error when getting data from database")
         Else
             Dim dr As DataRow = dt.Rows(0)
-            Dim hm As String = dr("hm_id")
             Dim name As String = dr("school_name")
             Dim tag As String = dr("school_tag")
             Dim locID As Integer = dr("school_location")
             Dim loc As String = dr("school_address")
+            Dim img As String = Nothing
+            If Not IsDBNull(dr("school_image")) Then
+                img = dr("school_image")
+            End If
+            Dim ownId As String = dr("owner_id")
+                Dim ownName As String = dr("owner_name")
+                Dim email As String = dr("owner_email")
+                Dim phone As String = dr("owner_phone")
 
-            txt_searchID.Enabled = False
-            txt_ID.Text = txt_searchID.Text
-            txt_IDHM.Text = hm
-            txt_name.Text = name
-            txt_loc.Text = loc
-            lbl_locId.Text = locID
+                txt_searchID.Enabled = False
+                txt_ID.Text = txt_searchID.Text
+                txt_name.Text = name
+                txt_loc.Text = loc
+                lbl_locId.Text = locID
             txt_tag.Text = tag
-            Panel1.Visible = True
-        End If
+            img_school.ImageUrl = img
+            txt_hmID.Text = ownId
+            txt_hmname.Text = ownName
+            txt_hmEmail.Text = email
+                txt_HMphone.Text = phone
+                Panel1.Visible = True
+            End If
 
     End Sub
 
@@ -142,19 +170,30 @@ Public Class AdminSchool
         Else
             Dim dr As DataRow = dt.Rows(0)
             Dim sid As Integer = dr("venue_id")
-            Dim hm As String = dr("hm_id")
             Dim name As String = dr("school_name")
             Dim locID As Integer = dr("school_location")
             Dim tag As String = dr("school_tag")
             Dim loc As String = dr("school_address")
+            Dim img As String = Nothing
+            If Not IsDBNull(dr("school_image")) Then
+                img = dr("school_image")
+            End If
+            Dim ownId As String = dr("owner_id")
+            Dim ownName As String = dr("owner_name")
+            Dim email As String = dr("owner_email")
+            Dim phone As String = dr("owner_phone")
 
             txt_searchID.Enabled = False
             txt_ID.Text = sid
-            txt_IDHM.Text = hm
             txt_name.Text = name
             txt_loc.Text = loc
             lbl_locId.Text = locID
             txt_tag.Text = tag
+            img_school.ImageUrl = img
+                txt_hmID.Text = ownId
+            txt_hmname.Text = ownName
+            txt_hmEmail.Text = email
+            txt_HMphone.Text = phone
             Panel1.Visible = True
         End If
 
@@ -176,19 +215,30 @@ Public Class AdminSchool
         Else
             Dim dr As DataRow = dt.Rows(0)
             Dim sid As Integer = dr("venue_id")
-            Dim hm As String = dr("hm_id")
             Dim name As String = dr("school_name")
             Dim tag2 As String = dr("school_tag")
             Dim locID As Integer = dr("school_location")
             Dim loc As String = dr("school_address")
+            Dim img As String = Nothing
+            If Not IsDBNull(dr("school_image")) Then
+                img = dr("school_image")
+            End If
+            Dim ownId As String = dr("owner_id")
+            Dim ownName As String = dr("owner_name")
+            Dim email As String = dr("owner_email")
+            Dim phone As String = dr("owner_phone")
 
             txt_searchID.Enabled = False
             txt_ID.Text = sid
-            txt_IDHM.Text = hm
             txt_name.Text = name
             txt_loc.Text = loc
             lbl_locId.Text = locID
             txt_tag.Text = tag2
+            txt_hmID.Text = ownId
+            img_school.ImageUrl = img
+                txt_hmname.Text = ownName
+            txt_hmEmail.Text = email
+            txt_HMphone.Text = phone
             Panel1.Visible = True
         End If
 
@@ -229,9 +279,16 @@ Public Class AdminSchool
         updateSchoolCmd.Parameters.AddWithValue("sctag", txt_tag.Text)
         updateSchoolCmd.Parameters.AddWithValue("id", txt_ID.Text)
 
-        Dim rowsAff As Integer = updateLocationCmd.ExecuteNonQuery
+        updateHMCmd.Parameters.Clear()
+        updateHMCmd.Parameters.AddWithValue("oid", txt_hmID.Text)
+        updateHMCmd.Parameters.AddWithValue("on", txt_hmname.Text)
+        updateHMCmd.Parameters.AddWithValue("oe", txt_hmEmail.Text)
+        updateHMCmd.Parameters.AddWithValue("op", txt_HMphone.Text)
 
-        If rowsAff < 1 Then
+        Dim rowsAff As Integer = updateLocationCmd.ExecuteNonQuery
+        Dim rowsAff3 As Integer = updateHMCmd.ExecuteNonQuery
+
+        If rowsAff < 1 And rowsAff3 < 1 Then
             MsgBox("Error, Somethings wrong")
         Else
             Dim rowsAff2 As Integer = updateSchoolCmd.ExecuteNonQuery
@@ -239,9 +296,13 @@ Public Class AdminSchool
                 MsgBox("Error when uploading school data")
             Else
                 MsgBox("Success updating, refreshing")
-                Response.Redirect("AdminSchool.aspx")
+                Server.Transfer("AdminSchool.aspx")
             End If
         End If
+        Panel1.Visible = False
+        pnl_listSchool.Visible = False
+        pnl_SearchOne.Visible = False
+        pnl_tag.Visible = False
     End Sub
 
     Protected Sub btn_delete_Click(sender As Object, e As EventArgs) Handles btn_delete.Click
@@ -251,36 +312,59 @@ Public Class AdminSchool
             Exit Sub
         End If
 
+        checkBookingCmd.Parameters.Clear()
+        checkBookingCmd.Parameters.AddWithValue("sid", txt_ID.Text)
+
+        Dim adap As SqlDataAdapter = New SqlDataAdapter(checkBookingCmd)
+        Dim ds As DataSet = New DataSet
+        adap.Fill(ds, "check")
+        Dim dt As DataTable = ds.Tables("check")
+
+        If dt.Rows.Count >= 1 Then
+            MsgBox("There are bookings present in the school")
+            Exit Sub
+        End If
+
+        deleteCourtCmd.Parameters.Clear()
+        deleteCourtCmd.Parameters.AddWithValue("sid", txt_ID.Text)
+
         deleteLocationCmd.Parameters.Clear()
         deleteLocationCmd.Parameters.AddWithValue("id", lbl_locId.Text)
 
         deleteSchoolCmd.Parameters.Clear()
         deleteSchoolCmd.Parameters.AddWithValue("id", txt_ID.Text)
 
-        updateHMSchoolCmd.Parameters.Clear()
-        updateHMSchoolCmd.Parameters.AddWithValue("hid", txt_IDHM.Text)
+        deleteOwnerCmd.Parameters.Clear()
+        deleteOwnerCmd.Parameters.AddWithValue("own", txt_hmID.Text)
 
-        Dim rowsAff As Integer = updateHMSchoolCmd.ExecuteNonQuery
-
-        If rowsAff < 1 Then
-            MsgBox("Error at rowsAff")
-            Exit Sub
-        End If
-
-        Dim rowsAff2 As Integer = deleteLocationCmd.ExecuteNonQuery
+        Dim rowsAff2 As Integer = deleteSchoolCmd.ExecuteNonQuery
 
         If rowsAff2 < 1 Then
             MsgBox("Error at rowsAff2")
             Exit Sub
         End If
 
-        Dim rowsAff3 As Integer = deleteSchoolCmd.ExecuteNonQuery
+        Dim rowsAff4 As Integer = deleteCourtCmd.ExecuteNonQuery
+
+        If rowsAff4 < 1 Then
+            MsgBox("Error at rowsAff4")
+            Exit Sub
+        End If
+
+        Dim rowsAff3 As Integer = deleteLocationCmd.ExecuteNonQuery
 
         If rowsAff3 < 1 Then
             MsgBox("Error at rowsAff3")
+            Exit Sub
+        End If
+
+        Dim rowsAff5 As Integer = deleteOwnerCmd.ExecuteNonQuery
+
+        If rowsAff5 < 1 Then
+            MsgBox("Error at rowsAff5")
         Else
             MsgBox("Success, school deleted")
-            Response.Redirect("AdminSchool.aspx")
+            Server.Transfer("AdminSchool.aspx")
         End If
     End Sub
 
@@ -300,5 +384,13 @@ Public Class AdminSchool
         pnl_listSchool.Visible = False
         pnl_SearchOne.Visible = False
         pnl_tag.Visible = False
+    End Sub
+
+    Protected Sub btn_addSchool_Click(sender As Object, e As EventArgs) Handles btn_addSchool.Click
+        Server.Transfer("../CreateSchool.aspx")
+    End Sub
+
+    Protected Sub btn_changeImg_Click(sender As Object, e As EventArgs) Handles btn_changeImg.Click
+        Server.Transfer("AdminImage.aspx")
     End Sub
 End Class

@@ -1,5 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Admin_page.aspx.vb" Inherits="Final_Project.Admin_page" %>
-
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Admin_page.aspx.vb" Inherits="Final_Project.Admin_page" Title="Admin page" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -7,7 +6,7 @@
     <link rel="shortcut icon" href="images/favicon.png" type="image/jpg" />
     <title>Admin Page</title>
     <style type="text/css">
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
+         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
 
         .auto-style1 {
             text-align: center;
@@ -76,8 +75,9 @@
             <asp:Button ID="btn_schools" runat="server" Text="Check the school list " class="button"/>
 &nbsp;
             <asp:Button ID="btn_courts" runat="server" Text="Check the court list " class="button"/>
+            <asp:Button ID="btn_feedback" runat="server" Text="Check the user's feedback" class="button"/>
+            <asp:Button ID="btn_newSchool" runat="server" Text="Check the new school's proporsal" class="button"/>
         </div>
-
     </form>
 </body>
 </html>

@@ -9,6 +9,9 @@ Public Class Delete_booking
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Session("UserID") Is Nothing Then
+            Server.Transfer("Starting_Page.aspx")
+        End If
         Dim connStr As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\jpyea\source\repos\Final Project\Final Project\App_Data\badminton_database.mdf"";Integrated Security=True"
         conn = New SqlConnection(connStr)
         conn.Open()
@@ -33,7 +36,7 @@ Public Class Delete_booking
         delBookingCmd = New SqlCommand(delBookingsql, conn)
 
         loadUserBookCmd.Parameters.Clear()
-        loadUserBookCmd.Parameters.AddWithValue("uid", PubVar.userId)
+        loadUserBookCmd.Parameters.AddWithValue("uid", Session("UserID"))
 
         Dim adapter As SqlDataAdapter = New SqlDataAdapter(loadUserBookCmd)
         Dim ds As DataSet = New DataSet
@@ -42,8 +45,8 @@ Public Class Delete_booking
         Dim dt As DataTable = ds.Tables("getUserData")
 
         If dt.Rows.Count < 1 Then
-            MsgBox("There is no booking made. Get started by entering the booking now")
-            Response.Redirect("main_page.aspx")
+            MsgBox("There is no booking made. Get started by creating one")
+            Server.Transfer("main_page.aspx")
         Else
             If Not IsPostBack Then
                 lst_booking.Items.Clear()
@@ -78,11 +81,10 @@ Public Class Delete_booking
             payId = dr("payment_id")
         End If
 
-        lbl_Test.Text = bookId.ToString + " Payid" + payId.ToString
     End Sub
 
     Protected Sub btn_mainMenu_Click(sender As Object, e As EventArgs) Handles btn_mainMenu.Click
-        Response.Redirect("main_page.aspx")
+        Server.Transfer("main_page.aspx")
     End Sub
 
     Protected Sub btn_del_Click(sender As Object, e As EventArgs) Handles btn_del.Click
@@ -99,18 +101,49 @@ Public Class Delete_booking
             delBookingCmd.Parameters.Clear()
             delBookingCmd.Parameters.AddWithValue("bid", bookId)
 
-            Dim rowsAffected As Integer = delPaymentCmd.ExecuteNonQuery()
+            Dim rowsAffected As Integer = delBookingCmd.ExecuteNonQuery()
+            Dim rowsAffected2 As Integer = delPaymentCmd.ExecuteNonQuery()
             If rowsAffected < 1 Then
                 MsgBox("Error, unclear error")
             Else
-                Dim rowsAffected2 As Integer = delBookingCmd.ExecuteNonQuery()
                 If rowsAffected2 < 1 Then
                     MsgBox("Error, rowsAffected2 Problem")
                 Else
                     MsgBox("Booking Deleted")
+                    RefreshPage()
+                    Server.Transfer("Delete_booking.aspx")
                 End If
             End If
 
+        End If
+    End Sub
+    Protected Sub RefreshPage()
+
+        loadUserBookCmd.Parameters.Clear()
+        loadUserBookCmd.Parameters.AddWithValue("uid", Session("UserID"))
+
+        Dim adapter As SqlDataAdapter = New SqlDataAdapter(loadUserBookCmd)
+        Dim ds As DataSet = New DataSet
+        adapter.Fill(ds, "getUserData")
+
+        Dim dt As DataTable = ds.Tables("getUserData")
+
+        If dt.Rows.Count < 1 Then
+            MsgBox("There is no booking made. Get started by entering the booking now")
+            Server.Transfer("main_page.aspx")
+        Else
+            If Not IsPostBack Then
+                lst_booking.Items.Clear()
+                For i As Integer = 0 To dt.Rows.Count - 1
+                    Dim dr As DataRow = dt.Rows(i)
+                    Dim book As Integer = dr("booking_id")
+                    Dim bookStart As DateTime = dr("booking_date_start")
+                    Dim bookEnd As DateTime = dr("booking_date_end")
+                    Dim str As String = "ID: " + book.ToString + " Start: " + bookStart.ToString + " End:" + bookEnd.ToString
+                    lst_booking.Items.Add(str)
+                    lst_booking.Items.Item(i).Value = book
+                Next
+            End If
         End If
     End Sub
 End Class

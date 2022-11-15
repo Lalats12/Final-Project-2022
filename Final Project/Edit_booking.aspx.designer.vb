@@ -50,6 +50,24 @@ Partial Public Class Edit_bookingaspx
     Protected WithEvents drp_school As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''lbl_courtStat control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_courtStat As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''tbl_books control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tbl_books As Global.System.Web.UI.WebControls.Table
+
+    '''<summary>
     '''drp_court control.
     '''</summary>
     '''<remarks>

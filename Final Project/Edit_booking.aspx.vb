@@ -17,6 +17,7 @@ Public Class Edit_bookingaspx
     Dim editUserCourtCmd As SqlCommand
     Dim loadUserCourtCmd As SqlCommand
     Dim loadIndCourtCmd As SqlCommand
+    Dim getBooksCmd As SqlCommand
 
     Dim payId As Integer
 
@@ -24,6 +25,9 @@ Public Class Edit_bookingaspx
     Dim secNumCheck As Regex = New Regex("\d{4}")
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Session("UserID") Is Nothing Then
+            Server.Transfer("Starting_Page.aspx")
+        End If
         Dim connStr As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\jpyea\source\repos\Final Project\Final Project\App_Data\badminton_database.mdf"";Integrated Security=True"
         conn = New SqlConnection(connStr)
         conn.Open()
@@ -70,9 +74,14 @@ Public Class Edit_bookingaspx
                                        WHERE court_id = @coid"
         checkBooksCmd = New SqlCommand(checkBooksSql, conn)
 
+        Dim getBooksSql As String = "SELECT booking_id, booking_date_start,booking_date_end, username
+                                     FROM booking INNER JOIN user_data ON (user_data.user_id = booking.user_id)
+                                     WHERE court_id = @coid"
+        getBooksCmd = New SqlCommand(getBooksSql, conn)
+
 
         loadUserCourtCmd.Parameters.Clear()
-        loadUserCourtCmd.Parameters.AddWithValue("uid", PubVar.userId)
+        loadUserCourtCmd.Parameters.AddWithValue("uid", Session("UserID"))
 
         If Not IsPostBack Then
             Dim adapter As SqlDataAdapter = New SqlDataAdapter(loadUserCourtCmd)
@@ -83,7 +92,7 @@ Public Class Edit_bookingaspx
 
             If dt.Rows.Count < 1 Then
                 MsgBox("You have no bookings made, returning to main menu")
-                Response.Redirect("main_page.aspx")
+                Server.Transfer("main_page.aspx")
             Else
                 drp_user_booking.Items.Clear()
                 drp_user_booking.Items.Add("(Select)")
@@ -141,6 +150,11 @@ Public Class Edit_bookingaspx
             End If
             Dim startDate As DateTime = DateTime.Parse(booking_date + " " + start_time_hr.SelectedValue + ":00 " + start_time_ampm.SelectedValue)
             Dim endDate As DateTime = DateTime.Parse(booking_date + " " + end_time_hr.SelectedValue + ":00 " + end_time_ampm.SelectedValue)
+
+            If Not blankCheck() Then
+                MsgBox("The School/court is not selected")
+                Exit Sub
+            End If
 
             If chk_nextDay.Checked = True Then
                 endDate = endDate.AddDays(1)
@@ -217,7 +231,7 @@ Public Class Edit_bookingaspx
             Dim rowsAffected As Integer = editPaymentCmd.ExecuteNonQuery()
 
             If rowsAffected < 1 Then
-                MsgBox("Error, it failed to upload to the system")
+                MsgBox("Error related to updating your booking")
             Else
                 getPaymentCmd.Parameters.Clear()
                 getPaymentCmd.Parameters.AddWithValue("payid", payId)
@@ -228,7 +242,7 @@ Public Class Edit_bookingaspx
                 Dim dt2 As DataTable = ds2.Tables("GetPayment")
 
                 If dt2.Rows.Count < 1 Then
-                    MsgBox("Error, dt2 doesn't work")
+                    MsgBox("Error related to fetching data")
                 Else
                     Dim dr As DataRow = dt2.Rows(0)
                     editUserCourtCmd.Parameters.Clear()
@@ -241,23 +255,20 @@ Public Class Edit_bookingaspx
                     Dim rowsAffected2 As Integer = editUserCourtCmd.ExecuteNonQuery()
 
                     If rowsAffected2 < 1 Then
-                        MsgBox("Somethings wrond with rowsAffected2")
+                        MsgBox("Somethings wrong when updaing your booking")
                     Else
-                        MsgBox("Success, returing to main menu")
-                        Response.Redirect("main_page.aspx")
+                        MsgBox("Success, remember to snap shot it")
+                        Server.Transfer("main_page.aspx")
                     End If
                 End If
-
-                editUserCourtCmd.Parameters.Clear()
             End If
-
         Catch ex As Exception
             MsgBox("Error, error message: " + ex.ToString)
         End Try
     End Sub
 
     Protected Sub btn_return_Click(sender As Object, e As EventArgs) Handles btn_return.Click
-        Response.Redirect("main_page.aspx")
+        Server.Transfer("main_page.aspx")
     End Sub
 
     Protected Sub drp_user_booking_SelectedIndexChanged(sender As Object, e As EventArgs) Handles drp_user_booking.SelectedIndexChanged
@@ -331,6 +342,34 @@ Public Class Edit_bookingaspx
                 drp_court.Items.Item(1 + i).Value = courtId
             Next
         End If
+
+        getBooksCmd.Parameters.Clear()
+        getBooksCmd.Parameters.AddWithValue("coid", value)
+        Dim adap2 As SqlDataAdapter = New SqlDataAdapter(getBooksCmd)
+        Dim ds2 As DataSet = New DataSet
+        adap2.Fill(ds2, "books")
+        Dim dt2 As DataTable = ds2.Tables("books")
+
+        If dt2.Rows.Count > 0 Then
+            tbl_books.Visible = True
+            For i As Integer = 0 To dt2.Rows.Count - 1
+                Dim dr As DataRow = dt2.Rows(i)
+                Dim row As TableRow = New TableRow
+                Dim bookId As String = dr("booking_id").ToString
+                Dim bookStart As String = dr("booking_date_start").ToString
+                Dim bookEnd As String = dr("booking_date_end").ToString
+                Dim cellId As TableCell = New TableCell()
+                cellId.Text = bookId
+                Dim cellStart As TableCell = New TableCell
+                cellStart.Text = bookStart
+                Dim cellEnd As TableCell = New TableCell
+                cellEnd.Text = bookEnd
+                row.Cells.Add(cellId)
+                row.Cells.Add(cellStart)
+                row.Cells.Add(cellEnd)
+                tbl_books.Rows.Add(row)
+            Next
+        End If
     End Sub
 
     Protected Sub drp_court_SelectedIndexChanged(sender As Object, e As EventArgs) Handles drp_court.SelectedIndexChanged
@@ -356,4 +395,12 @@ Public Class Edit_bookingaspx
         End If
 
     End Sub
+
+    Protected Function blankCheck()
+        If drp_court.SelectedIndex = 0 Or drp_school.SelectedIndex = 0 Then
+            Return False
+        End If
+        Return True
+    End Function
+
 End Class

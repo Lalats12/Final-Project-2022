@@ -31,22 +31,25 @@
         .auto-style2 {
             text-align: left;
         }
-        .auto-style3 {
-            position: absolute;
-            left: 973px;
-            top: 10px;
+        .absolute{
+            position:absolute;
+            top: 11px;
+            left: 1189px;
         }
-    </style>
+        </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="auto-style1">
         <div class="auto-style1">
             <div class="header">
-            <h6 class="auto-style2"><asp:Label ID="lbl_userId" runat="server" Text="Welcome, "></asp:Label></h6><asp:Button ID="btn_logout" runat="server" Text="Log out" CssClass="auto-style3"/>
+            <h4 class="auto-style2"><asp:Label ID="lbl_userId" runat="server" Text="Welcome, "></asp:Label>
+            <asp:Button ID="btn_logout" runat="server" Text="Logout" CssClass="absolute"/>
+                </h4>New Here?
+                <asp:HyperLink ID="HyperLink3" runat="server">Click here!</asp:HyperLink>
             </div>
             <h1>Venue</h1>
-            <p>Current status:<asp:Label ID="lblVenue" runat="server" Text="Label"></asp:Label> </p>
+            <p>Currently available courts:<asp:Label ID="lblVenue" runat="server" Text="Label"></asp:Label> </p>
         </div>
         <h2 class="auto-style1">Your booked list</h2>
         <asp:Label ID="lblNoBooks" runat="server" Text="There's no bookings made" Visible="False" Enabled="False"></asp:Label>
@@ -60,6 +63,7 @@
                     <asp:TableCell runat="server">End Date</asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
+            <asp:Button ID="btn_snap" runat="server" Text="Snap your booking" />
             <asp:Button ID="btn_edit" runat="server" Text="Edit your books" />
             <asp:Button ID="btn_delete" runat="server" Text="Delete" />
         </div>
@@ -123,6 +127,9 @@
                 &nbsp;
                 <asp:Button ID="btn_cancel" runat="server" Text="Cancel" Visible="False" />
                 <br />
+                <br />
+                <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/CourtsImages.aspx">Preview the courts</asp:HyperLink>
+                <br />
             </asp:Panel>
                 </div>
             <div class="venue">
@@ -135,10 +142,9 @@
                 </asp:TableRow>
             </asp:Table>
             <asp:Button ID="btn_booking" runat="server" Text="Book now" />
-            <asp:Label ID="lbl_test" runat="server"></asp:Label>
                 <br />
                 <br />
-                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/About_Us.html">About Us</asp:HyperLink>
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/About_Us.aspx">About Us</asp:HyperLink>
         </div>
         </div>
     </form>

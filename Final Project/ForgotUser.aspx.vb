@@ -37,6 +37,6 @@ Public Class ForgotUser
     End Sub
 
     Protected Sub btn_return_Click(sender As Object, e As EventArgs) Handles btn_return.Click
-        Response.Redirect("Log_In_Page.aspx")
+        Server.Transfer("Log_In_Page.aspx")
     End Sub
 End Class

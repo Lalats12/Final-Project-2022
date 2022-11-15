@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="ManageCourts.aspx.vb" Inherits="Final_Project.CreateCourts" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="ForUsers.aspx.vb" Inherits="Final_Project.ForUsers" %>
 
 <!DOCTYPE html>
 
@@ -6,28 +6,29 @@
 <head runat="server">
     <title></title>
     <style type="text/css">
-        .auto-style1 {
+        #form1 {
             text-align: center;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="auto-style1">
-        <div class="auto-style1">
-            <h2>badminton Booking | Manage Courts </h2>
-            <asp:Label ID="lbl_invisiSchool" runat="server" Visible="False"></asp:Label>
+        <div>
+            <h2>HM school Registration</h2>
+            Your full name:<br />
+            <asp:TextBox ID="txt_name" runat="server"></asp:TextBox><br />
+            Your email:<br />
+            <asp:TextBox ID="txt_email" runat="server"></asp:TextBox><br />
+            Your number:<br />
+            <asp:TextBox ID="txt_nums" runat="server"></asp:TextBox><br />
+            Your school name:<br />
+            <asp:TextBox ID="txt_schoolName" runat="server"></asp:TextBox><br />
+            Your school address:<br />
+            <asp:TextBox ID="txt_schoolAdd" runat="server" Height="104px" TextMode="MultiLine" Width="292px"></asp:TextBox><br />
+            Amount of courts:<br />
+            <asp:TextBox ID="txt_courtsNum" runat="server" TextMode="Number"></asp:TextBox>
             <br />
-            Court:<br />
-            <asp:DropDownList ID="drp_courts" runat="server" AutoPostBack="True"></asp:DropDownList>
-            <br />
-            Status:<br />
-            <asp:DropDownList ID="drp_availa" runat="server" Enabled="False">
-                <asp:ListItem Value="1">Ready</asp:ListItem>
-                <asp:ListItem Value="0">Not Ready</asp:ListItem>
-            </asp:DropDownList>
-            <br />
-            Time start:<br />
+            The Time to open:<br />
             <asp:DropDownList ID="drp_start_time" runat="server">
                 <asp:ListItem>00</asp:ListItem>
                 <asp:ListItem>01</asp:ListItem>
@@ -55,9 +56,9 @@
                 <asp:ListItem>23</asp:ListItem>
             </asp:DropDownList>
 &nbsp;: 00<br />
-            Time end:<br />
-            <asp:DropDownList ID="drp_end_time" runat="server">
-                               <asp:ListItem>00</asp:ListItem>
+            The time to close:<br />
+            <asp:DropDownList ID="drp_close_time" runat="server">
+                <asp:ListItem>00</asp:ListItem>
                 <asp:ListItem>01</asp:ListItem>
                 <asp:ListItem>02</asp:ListItem>
                 <asp:ListItem>03</asp:ListItem>
@@ -83,16 +84,9 @@
                 <asp:ListItem>23</asp:ListItem>
             </asp:DropDownList>
 &nbsp;: 00<br />
-            <asp:Button ID="btn_add" runat="server" Text="Add " />
-&nbsp;
-            <asp:Button ID="btn_edit" runat="server" Text="Edit" />
-&nbsp;
-            <asp:Button ID="btn_editConfirm" runat="server" Text="Confirm" Visible="False" />
-&nbsp;&nbsp;<asp:Button ID="btn_editCancel" runat="server" Text="Cancel" Visible="False" />
-&nbsp;
-            <asp:Button ID="btn_delete" runat="server" Text="Delete" />
-            <br />
-        </div>
+            The secret code:<br />
+            <asp:TextBox ID="txt_code" runat="server"></asp:TextBox><br />
+            <asp:Button Text="Enter" ID="btn_enter" runat="server" />
         </div>
     </form>
 </body>

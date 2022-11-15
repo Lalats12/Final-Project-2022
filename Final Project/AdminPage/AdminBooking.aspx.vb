@@ -19,12 +19,15 @@ Public Class AdminBooking
     Dim updatePaymentCmd As SqlCommand
     Dim deleteBookingCmd As SqlCommand
     Dim deletePaymentCmd As SqlCommand
+    Dim getBooksCmd As SqlCommand
 
     Dim cardNumCheck As Regex = New Regex("\d{4}-\d{4}-\d{4}-\d{4}")
     Dim secNumCheck As Regex = New Regex("\d{4}")
 
-
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Session("IsAdmin") Is Nothing Then
+            Server.Transfer("../Starting_Page.aspx")
+        End If
         Dim connStr As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\jpyea\source\repos\Final Project\Final Project\App_Data\badminton_database.mdf"";Integrated Security=True"
         conn = New SqlConnection(connStr)
         conn.Open()
@@ -77,6 +80,11 @@ Public Class AdminBooking
 
         Dim deletePaymentSql As String = "DELETE Payment WHERE payment_id = @pid"
         deletePaymentCmd = New SqlCommand(deletePaymentSql, conn)
+
+        Dim getBooksSql As String = "SELECT booking_id, booking_date_start,booking_date_end, username
+                                     FROM booking INNER JOIN user_data ON (user_data.user_id = booking.user_id)
+                                     WHERE court_id = @coid"
+        getBooksCmd = New SqlCommand(getBooksSql, conn)
 
         Dim schoolAdap As SqlDataAdapter = New SqlDataAdapter(loadSchoolsCmd)
         Dim schDS As DataSet = New DataSet
@@ -265,7 +273,7 @@ Public Class AdminBooking
                 MsgBox("error detected when deleting it")
             Else
                 MsgBox("Sucessful, closing")
-                Response.Redirect("AdminBooking.aspx")
+                Server.Transfer("AdminBooking.aspx")
                 Panel1.Visible = False
                 pnl_courts.Visible = False
                 pan_search.Visible = False
@@ -380,7 +388,7 @@ Public Class AdminBooking
             pnl_courts.Visible = False
             pan_search.Visible = False
             pan_displayAll.Visible = False
-            Response.Redirect("AdminBooking.aspx")
+            Server.Transfer("AdminBooking.aspx")
         End If
     End Sub
 
@@ -558,5 +566,37 @@ Public Class AdminBooking
             Dim strJoin = timeStart + " - " + timeEnd
             lbl_courtTime.Text = strJoin
         End If
+
+        getBooksCmd.Parameters.Clear()
+        getBooksCmd.Parameters.AddWithValue("coid", value)
+        Dim adap2 As SqlDataAdapter = New SqlDataAdapter(getBooksCmd)
+        Dim ds2 As DataSet = New DataSet
+        adap2.Fill(ds2, "books")
+        Dim dt2 As DataTable = ds2.Tables("books")
+
+        If dt2.Rows.Count > 0 Then
+            tbl_books.Visible = True
+            For i As Integer = 0 To dt2.Rows.Count - 1
+                Dim dr As DataRow = dt2.Rows(i)
+                Dim row As TableRow = New TableRow
+                Dim bookId As String = dr("booking_id").ToString
+                Dim bookStart As String = dr("booking_date_start").ToString
+                Dim bookEnd As String = dr("booking_date_end").ToString
+                Dim cellId As TableCell = New TableCell()
+                cellId.Text = bookId
+                Dim cellStart As TableCell = New TableCell
+                cellStart.Text = bookStart
+                Dim cellEnd As TableCell = New TableCell
+                cellEnd.Text = bookEnd
+                row.Cells.Add(cellId)
+                row.Cells.Add(cellStart)
+                row.Cells.Add(cellEnd)
+                tbl_books.Rows.Add(row)
+            Next
+        End If
+    End Sub
+
+    Protected Sub btn_main_menu_Click(sender As Object, e As EventArgs) Handles btn_main_menu.Click
+        Server.Transfer("../Admin_page.aspx")
     End Sub
 End Class

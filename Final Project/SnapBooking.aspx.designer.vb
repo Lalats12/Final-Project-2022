@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class HMRegister
+Partial Public Class SnapBooking
 
     '''<summary>
     '''form1 control.
@@ -23,65 +23,83 @@ Partial Public Class HMRegister
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''txt_username control.
+    '''drp_booking control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_username As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents drp_booking As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''txt_pass control.
+    '''lbl_ID control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_pass As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lbl_ID As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txt_repass control.
+    '''lbl_name control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_repass As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lbl_name As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txt_email control.
+    '''lbl_email control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_email As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lbl_email As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txt_phoneNum control.
+    '''lbl_phone control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_phoneNum As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lbl_phone As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txt_pin control.
+    '''lbl_court control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_pin As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lbl_court As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''btn_register control.
+    '''lbl_school control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_register As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents lbl_school As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbl_start_date control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_start_date As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbl_end_date control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_end_date As Global.System.Web.UI.WebControls.Label
 End Class

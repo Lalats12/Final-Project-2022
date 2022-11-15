@@ -1,24 +1,24 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
+Imports System.IO.StreamReader
 Public Class CreateSchool
     Inherits System.Web.UI.Page
     Dim conn As SqlConnection
-    Dim checkHMCmd As SqlCommand
     Dim checkSchoolCmd As SqlCommand
     Dim getLocationCmd As SqlCommand
     Dim getSchoolIdCmd As SqlCommand
     Dim addLocationCmd As SqlCommand
     Dim addSchoolCmd As SqlCommand
+    Dim addHMCmd As SqlCommand
+    Dim getHMIdCmd As SqlCommand
     Dim updateHMCmd As SqlCommand
+    Dim regexEmail As Regex = New Regex("^((([^<>()[\]\\.,;:\s@])+\.?([^!@#$%^&*()_+{}:<>?])+)|.*)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z]+\.))+[a-zA-Z]{2,})")
+
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim connStr As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\jpyea\source\repos\Final Project\Final Project\App_Data\badminton_database.mdf"";Integrated Security=True"
         conn = New SqlConnection(connStr)
         conn.Open()
-
-        Dim checkHMSql As String = "SELECT hm_id, school_num
-                                    FROM AdminHead
-                                    WHERE hm_id = @hi"
-        checkHMCmd = New SqlCommand(checkHMSql, conn)
 
         Dim checkSchoolSql As String = "SELECT school_name, school_tag, school_address
                                         FROM Venues INNER JOIN Locations ON Venues.school_location = Locations.location_id
@@ -33,33 +33,19 @@ Public Class CreateSchool
                                         WHERE school_address = @add"
         getLocationCmd = New SqlCommand(getLocationSql, conn)
 
-        Dim getSchoolIdSql As String = "SELECT venue_id
+        Dim getSchoolIdSql As String = "SELECT venue_id,school_tag
                                         FROM Venues
                                         WHERE school_name = @sch"
         getSchoolIdCmd = New SqlCommand(getSchoolIdSql, conn)
 
-        Dim addSchoolSql As String = "INSERT INTO Venues(school_name,school_tag,school_location) VALUES(@nam, @tag, @loc)"
+        Dim addSchoolSql As String = "INSERT INTO Venues(school_name,school_tag,school_available_courts,school_location,owner_id) VALUES(@nam, @tag, @ava,@loc,@own)"
         addSchoolCmd = New SqlCommand(addSchoolSql, conn)
 
-        Dim updateHM As String = "UPDATE AdminHead SET school_num = @sch WHERE hm_id = @hid"
-        updateHMCmd = New SqlCommand(updateHM, conn)
+        Dim addHMSql As String = "INSERT INTO Owner(owner_name, owner_email, owner_phone) VALUES(@nam, @em, @ph)"
+        addHMCmd = New SqlCommand(addHMSql, conn)
 
-        checkHMCmd.Parameters.Clear()
-        checkHMCmd.Parameters.AddWithValue("hi", HMVars.HM_id)
-
-        Dim adapter As SqlDataAdapter = New SqlDataAdapter(checkHMCmd)
-        Dim ds As DataSet = New DataSet
-        adapter.Fill(ds, "check")
-
-        Dim dt As DataTable = ds.Tables("check")
-
-        Dim dr As DataRow = dt.Rows(0)
-
-        If Not IsDBNull(dr("school_num")) Then
-            MsgBox("Your school is registered, returing to main menu")
-            Response.Redirect("ContratorPage.aspx")
-        End If
-
+        Dim getHMIdsql As String = "SELECT owner_id FROM Owner WHERE owner_name = @on AND owner_email = @oe"
+        getHMIdCmd = New SqlCommand(getHMIdsql, conn)
 
 
     End Sub
@@ -68,6 +54,7 @@ Public Class CreateSchool
         Dim sch As String = txt_school.Text.ToString()
         Dim loc As String = txt_location.Text.ToString()
         Dim tag As String = txt_tag.Text.ToString()
+        Dim email As String = txt_hmEmail.Text.ToString
 
         If loc.Length <= 8 Then
             MsgBox("Location's word count should be more than 8")
@@ -77,6 +64,10 @@ Public Class CreateSchool
         If sch.Length <= 5 Then
             MsgBox("School's word count should be more than 5")
             Exit Sub
+        End If
+
+        If Not regexEmail.IsMatch(email) Then
+            MsgBox("The email is invalid, please try again")
         End If
 
         checkSchoolCmd.Parameters.Clear()
@@ -117,15 +108,36 @@ Public Class CreateSchool
                 Else
                     Dim dr = dt2.Rows(0)
                     Dim loca As Integer = dr("location_id")
-                    addSchoolCmd.Parameters.Clear()
-                    addSchoolCmd.Parameters.AddWithValue("nam", sch)
-                    addSchoolCmd.Parameters.AddWithValue("tag", tag)
-                    addSchoolCmd.Parameters.AddWithValue("loc", loca)
 
-                    Dim rowsAff2 As Integer = addSchoolCmd.ExecuteNonQuery
-                    If rowsAff2 < 1 Then
+                    addHMCmd.Parameters.Clear()
+                    addHMCmd.Parameters.AddWithValue("nam", txt_hmname.Text)
+                    addHMCmd.Parameters.AddWithValue("em", txt_hmEmail.Text)
+                    addHMCmd.Parameters.AddWithValue("ph", txt_HMphone.Text)
+
+                    Dim rowsAff3 As Integer = addHMCmd.ExecuteNonQuery
+                    If rowsAff3 < 1 Then
                         MsgBox("Error detected, please try again")
                     Else
+                        getHMIdCmd.Parameters.Clear()
+                        getHMIdCmd.Parameters.AddWithValue("on", txt_hmname.Text)
+                        getHMIdCmd.Parameters.AddWithValue("oe", txt_hmEmail.Text)
+
+                        Dim adap4 As SqlDataAdapter = New SqlDataAdapter(getHMIdCmd)
+                        Dim ds4 As DataSet = New DataSet
+                        adap4.Fill(ds4, "num")
+                        Dim dt4 As DataTable = ds4.Tables("num")
+                        Dim dr3 As DataRow = dt4.Rows(0)
+                        Dim own As Integer = dr3("owner_id")
+
+                        addSchoolCmd.Parameters.Clear()
+                        addSchoolCmd.Parameters.AddWithValue("nam", sch)
+                        addSchoolCmd.Parameters.AddWithValue("tag", tag)
+                        addSchoolCmd.Parameters.AddWithValue("loc", loca)
+                        addSchoolCmd.Parameters.AddWithValue("ava", 0)
+                        addSchoolCmd.Parameters.AddWithValue("own", own)
+
+                        Dim rowsAff2 As Integer = addSchoolCmd.ExecuteNonQuery
+
                         getSchoolIdCmd.Parameters.Clear()
                         getSchoolIdCmd.Parameters.AddWithValue("sch", sch)
 
@@ -136,20 +148,10 @@ Public Class CreateSchool
                         Dim dt3 As DataTable = ds3.Tables("getsch")
                         Dim dr2 As DataRow = dt3.Rows(0)
 
-                        updateHMCmd.Parameters.Clear()
-                        updateHMCmd.Parameters.AddWithValue("hid", HMVars.HM_id)
-                        updateHMCmd.Parameters.AddWithValue("sch", dr2("venue_id"))
-                        HM_school = dr2("venue_id")
+                        AdminVars.schoolTag = dr2("school_tag")
 
-                        Dim rowsAff3 As Integer = updateHMCmd.ExecuteNonQuery()
-
-                        If rowsAff3 < 1 Then
-                            MsgBox("Error at roAff3")
-                        Else
-                            MsgBox(sch + " added, now to the courts")
-                            Response.Redirect("ManageCourts.aspx")
-                        End If
-
+                        MsgBox(sch + " added, now to the courts")
+                        Server.Transfer("AdminPage/AdminCourts.aspx")
                     End If
                 End If
 
@@ -165,4 +167,29 @@ Public Class CreateSchool
         btn_courts.Enabled = True
         txt_tag.Text = txt_school.Text.Substring(0, 5) + "_pg"
     End Sub
+
+    Private Function CheckBack(toString As String) As Boolean
+        If toString.IndexOf(".") = -1 Then
+            Return False
+        End If
+
+        Dim validExtend(5) As String
+
+        validExtend(0) = "png"
+        validExtend(1) = "jpg"
+        validExtend(2) = "jpeg"
+        validExtend(3) = "bmp"
+        validExtend(4) = "tif"
+        validExtend(5) = "tiff"
+
+        Dim ext = toString.Substring(toString.LastIndexOf(".") + 1).ToLower()
+
+        For Each extend As String In validExtend
+            If extend.CompareTo(ext) = 0 Then
+                Return True
+            End If
+        Next
+
+        Return False
+    End Function
 End Class

@@ -3,6 +3,7 @@ Public Class Register_page
     Inherits System.Web.UI.Page
     Dim regexEmail As Regex = New Regex("^((([^<>()[\]\\.,;:\s@])+\.?([^!@#$%^&*()_+{}:<>?])+)|.*)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z]+\.))+[a-zA-Z]{2,})")
     Dim regexPass As Regex = New Regex("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:]).{8,64}")
+    Dim regexNums As Regex = New Regex("^((?<malaysiacode>\(?\+?\d{2}\)?)? ?)(\d{2,3})[ -]?(\d{3})[ -]?(\d{4})$")
     Dim conn As SqlConnection
     Dim checkCmd As SqlCommand
     Dim registerCmd As SqlCommand
@@ -35,8 +36,14 @@ Public Class Register_page
             MsgBox("Error, the password length should be more than 8")
             Exit Sub
         End If
+
         If Not regexPass.IsMatch(pass) Then
             MsgBox("Error, the password needs to have at least: One special character, One lowercase and uppercase character, and one number")
+            Exit Sub
+        End If
+
+        If Not regexNums.IsMatch(num) Then
+            MsgBox("Error, the numbers need to be malaysian numbers")
             Exit Sub
         End If
 
@@ -76,9 +83,9 @@ Public Class Register_page
             Dim dt2 As DataTable = ds.Tables("loginU")
             Dim usid As DataRow = dt2.Rows(0)
             MsgBox("User registration successful, welcome," + user)
-            PubVar.userName = user
-            PubVar.userId = usid("user_id")
-            Response.Redirect("main_page.aspx")
+            Session("UserID") = usid("user_id")
+            Session("UserName") = user
+            Server.Transfer("main_page.aspx")
         Else
             MsgBox("Somethings wrong")
         End If

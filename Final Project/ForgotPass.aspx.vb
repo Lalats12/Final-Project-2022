@@ -36,6 +36,6 @@ Public Class ForgotPass
     End Sub
 
     Protected Sub btn_main_menu_Click(sender As Object, e As EventArgs) Handles btn_main_menu.Click
-        Response.Redirect("Log_In_Page.aspx")
+        Server.Transfer("Log_In_Page.aspx")
     End Sub
 End Class

@@ -20,7 +20,7 @@
 
         .button {
              height: 50px;
-             width: 100px;
+             width: 180px;
              background: #000;
              border: none;
              color: white;
@@ -132,6 +132,8 @@
             <asp:Button ID="btn_change" CssClass="button" runat="server" Text="Update" />
 &nbsp;
             <asp:Button ID="btn_delete" CssClass="button" runat="server" Text="Delete court" />
+
+        &nbsp;<asp:Button ID="btn_main_menu" CssClass="button" runat="server" Text="Return to Main menu" />
 
         </div>
     </form>

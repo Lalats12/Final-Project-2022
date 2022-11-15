@@ -18,11 +18,15 @@ Public Class BookingPage
     Dim insertPaymentCmd As SqlCommand
     Dim takePayIdCmd As SqlCommand
     Dim insertBooksCmd As SqlCommand
+    Dim getBooksCmd As SqlCommand
 
     Dim cardNumCheck As Regex = New Regex("\d{4}-\d{4}-\d{4}-\d{4}")
     Dim secNumCheck As Regex = New Regex("\d{4}")
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Session("UserID") Is Nothing Then
+            Server.Transfer("Starting_Page.aspx")
+        End If
         Dim connStr As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\jpyea\source\repos\Final Project\Final Project\App_Data\badminton_database.mdf"";Integrated Security=True"
         conn = New SqlConnection(connStr)
         conn.Open()
@@ -67,6 +71,11 @@ Public Class BookingPage
                                         VALUES(@uid, @cid, @start,@end,@next,@payId)"
 
         insertBooksCmd = New SqlCommand(insertBooksSql, conn)
+
+        Dim getBooksSql As String = "SELECT booking_id, booking_date_start,booking_date_end, username
+                                     FROM booking INNER JOIN user_data ON (user_data.user_id = booking.user_id)
+                                     WHERE court_id = @coid"
+        getBooksCmd = New SqlCommand(getBooksSql, conn)
 
 
         If Not IsPostBack Then
@@ -162,6 +171,10 @@ Public Class BookingPage
             Dim startDate As DateTime = DateTime.Parse(booking_date + " " + start_time_hr.SelectedValue + ":00 " + start_time_ampm.SelectedValue)
             Dim endDate As DateTime = DateTime.Parse(booking_date + " " + end_time_hr.SelectedValue + ":00" + end_time_ampm.SelectedValue)
 
+            If Not blankCheck() Then
+                MsgBox("The School/court is not selected")
+                Exit Sub
+            End If
             If chk_nextDay.Checked = True Then
                 endDate = endDate.AddDays(1)
                 nextDay = 1
@@ -253,7 +266,7 @@ Public Class BookingPage
             Else
                 Dim dr As DataRow = dt3.Rows(0)
                 insertBooksCmd.Parameters.Clear()
-                insertBooksCmd.Parameters.AddWithValue("uid", PubVar.userId)
+                insertBooksCmd.Parameters.AddWithValue("uid", Session("UserID"))
                 insertBooksCmd.Parameters.AddWithValue("cid", drp_court.SelectedValue)
                 insertBooksCmd.Parameters.AddWithValue("start", startDate)
                 insertBooksCmd.Parameters.AddWithValue("end", endDate)
@@ -265,8 +278,8 @@ Public Class BookingPage
                     MsgBox("RowsAffected2 not working")
                     Exit Sub
                 Else
-                    MsgBox("Booking successful, returning to main page")
-                    Response.Redirect("main_page.aspx")
+                    MsgBox("Booking successful, remember to obtain the copy")
+                    Server.Transfer("main_page.aspx")
                 End If
             End If
 
@@ -297,15 +310,16 @@ Public Class BookingPage
                 Dim dr As DataRow = dt.Rows(i)
                 Dim courtId As Integer = dr("court_id")
                 Dim status As String = (i + 1).ToString
-                    drp_court.Items.Add(status + " (" + courtId.ToString + ")")
+                drp_court.Items.Add(status + " (" + courtId.ToString + ")")
                 drp_court.Items.Item(1 + i).Value = courtId
             Next
         End If
+        Panel1.Visible = True
     End Sub
 
     Protected Sub btn_return_Click(sender As Object, e As EventArgs) Handles btn_return.Click
         tags = "None"
-        Response.Redirect("main_page.aspx")
+        Server.Transfer("main_page.aspx")
     End Sub
 
     Protected Sub drp_court_SelectedIndexChanged(sender As Object, e As EventArgs) Handles drp_court.SelectedIndexChanged
@@ -330,5 +344,40 @@ Public Class BookingPage
             lbl_courtTime.Text = strJoin
         End If
 
+        getBooksCmd.Parameters.Clear()
+        getBooksCmd.Parameters.AddWithValue("coid", value)
+        Dim adap2 As SqlDataAdapter = New SqlDataAdapter(getBooksCmd)
+        Dim ds2 As DataSet = New DataSet
+        adap2.Fill(ds2, "books")
+        Dim dt2 As DataTable = ds2.Tables("books")
+
+        If dt2.Rows.Count > 0 Then
+            tbl_books.Visible = True
+            For i As Integer = 0 To dt2.Rows.Count - 1
+                Dim dr As DataRow = dt2.Rows(i)
+                Dim row As TableRow = New TableRow
+                Dim bookId As String = dr("booking_id").ToString
+                Dim bookStart As String = dr("booking_date_start").ToString
+                Dim bookEnd As String = dr("booking_date_end").ToString
+                Dim cellId As TableCell = New TableCell()
+                cellId.Text = bookId
+                Dim cellStart As TableCell = New TableCell
+                cellStart.Text = bookStart
+                Dim cellEnd As TableCell = New TableCell
+                cellEnd.Text = bookEnd
+                row.Cells.Add(cellId)
+                row.Cells.Add(cellStart)
+                row.Cells.Add(cellEnd)
+                tbl_books.Rows.Add(row)
+            Next
+        End If
     End Sub
+
+    Protected Function blankCheck()
+        If drp_court.SelectedIndex = 0 Or drp_school.SelectedIndex = 0 Then
+            Return False
+        End If
+        Return True
+    End Function
+
 End Class

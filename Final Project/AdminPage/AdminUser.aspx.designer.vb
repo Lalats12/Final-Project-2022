@@ -32,15 +32,6 @@ Partial Public Class AdminUser
     Protected WithEvents btn_searchUsers As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''btn_searchHM control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_searchHM As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''pnl_searchUser control.
     '''</summary>
     '''<remarks>
@@ -66,33 +57,6 @@ Partial Public Class AdminUser
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_Userid As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''pnl_HMsearch control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnl_HMsearch As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''txt_HMID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_HMID As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''btn_HMSearch control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_HMSearch As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''pnl_users control.
@@ -122,6 +86,15 @@ Partial Public Class AdminUser
     Protected WithEvents txt_email As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''txt_pass control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_pass As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''txt_number control.
     '''</summary>
     '''<remarks>
@@ -149,60 +122,6 @@ Partial Public Class AdminUser
     Protected WithEvents btn_Userdelete As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''pnl_HM control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnl_HM As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''txt_HMName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_HMName As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txt_HMEmail control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_HMEmail As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txt_HMnum control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_HMnum As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''btn_HMedit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_HMedit As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btn_HMdelete control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_HMdelete As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''btn_cancel control.
     '''</summary>
     '''<remarks>
@@ -210,4 +129,13 @@ Partial Public Class AdminUser
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_cancel As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btn_main_menu control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_main_menu As Global.System.Web.UI.WebControls.Button
 End Class

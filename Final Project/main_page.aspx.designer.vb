@@ -41,6 +41,15 @@ Partial Public Class WebForm1
     Protected WithEvents btn_logout As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''HyperLink3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink3 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
     '''lblVenue control.
     '''</summary>
     '''<remarks>
@@ -66,6 +75,15 @@ Partial Public Class WebForm1
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents user_booked_tables As Global.System.Web.UI.WebControls.Table
+
+    '''<summary>
+    '''btn_snap control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_snap As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''btn_edit control.
@@ -167,6 +185,15 @@ Partial Public Class WebForm1
     Protected WithEvents btn_cancel As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''HyperLink2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink2 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
     '''available_venue control.
     '''</summary>
     '''<remarks>
@@ -210,15 +237,6 @@ Partial Public Class WebForm1
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_booking As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''lbl_test control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_test As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''HyperLink1 control.

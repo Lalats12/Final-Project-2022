@@ -50,6 +50,42 @@ Partial Public Class CreateSchool
     Protected WithEvents txt_tag As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''file_up control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents file_up As Global.System.Web.UI.WebControls.FileUpload
+
+    '''<summary>
+    '''txt_hmname control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_hmname As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_hmEmail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_hmEmail As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_HMphone control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_HMphone As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''btn_courts control.
     '''</summary>
     '''<remarks>

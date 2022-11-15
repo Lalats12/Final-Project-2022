@@ -14,6 +14,16 @@
             height: 74px;
             text-align: center;
         }
+        .tables{
+            border:1px solid black;
+            border-collapse:collapse;
+        }
+        tr:not(:last-child){
+            border-bottom: 1px solid black;
+        }
+        td{
+            border-right: 1px solid black;
+        }
     </style>
 </head>
 <body>
@@ -31,6 +41,10 @@
                 <asp:ListItem Value="(Select)"></asp:ListItem>
             </asp:DropDownList>
             <br />
+                <br />
+                <asp:Label ID="lbl_courtStat" runat="server" Text="Bookings made with this court" Visible="False"></asp:Label>
+                <asp:Table ID="tbl_books" runat="server" Visible="False">
+                </asp:Table>
             <br />
             <h2>Court Number</h2>
             <asp:DropDownList ID="drp_court" runat="server" AutoPostBack="True">
@@ -124,6 +138,7 @@
             &nbsp;&nbsp;
             <asp:Button ID="btn_return" runat="server" Text="Return to menu" />
             <asp:Label ID="lbl_results" runat="server"></asp:Label>
+            <asp:
         </div>
     </form>
 </body>

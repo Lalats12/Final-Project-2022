@@ -25,8 +25,7 @@
         </div>
             <asp:Button ID="btn_login" runat="server" Text="Login" />
 &nbsp;
-            <asp:Button ID="btn_resigter" runat="server" Text="Register" />
-        </div>
+            </div>
     </form>
 </body>
 </html>

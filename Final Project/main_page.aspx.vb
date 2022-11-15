@@ -15,6 +15,9 @@ Public Class WebForm1
     Dim checkAvailaCmd As SqlCommand
     Dim getCourtTimeCmd As SqlCommand
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Session("UserID") Is Nothing Then
+            Server.Transfer("Starting_page.aspx")
+        End If
         Dim connStr As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\jpyea\source\repos\Final Project\Final Project\App_Data\badminton_database.mdf"";Integrated Security=True;Connect Timeout=30"
         conn = New SqlConnection(connStr)
         conn.Open()
@@ -73,7 +76,7 @@ Public Class WebForm1
                     Dim coDt As DataTable = coDs.Tables("courts")
 
                     If coDt.Rows.Count < 1 Then
-                        MsgBox("Unknown error, please try again")
+
                     Else
                         For j As Integer = 0 To coDt.Rows.Count - 1
                             Dim coDr As DataRow = coDt.Rows(j)
@@ -97,35 +100,23 @@ Public Class WebForm1
                     loc.Text = SchoolLocation
                     Dim ava As TableCell = New TableCell
                     ava.Text = SchoolAvailable
-                    Dim butt As LinkButton = New LinkButton
-                    butt.Text = "Book"
-                    butt.ID = SchoolTag
-                    butt.PostBackUrl = "BookingPage.aspx"
-                    AddHandler butt.Click, AddressOf btn_to_booking_page_Click
-                    'Dim butt As HyperLink = New HyperLink
-                    'butt.Text = "Book"
-                    'butt.ID = SchoolTag
-                    'butt.NavigateUrl = "BookingPage.aspx"
-                    Dim but As TableCell = New TableCell
-                    but.Controls.Add(butt)
                     newRow.Cells.Add(ven)
                     newRow.Cells.Add(sch)
                     newRow.Cells.Add(loc)
                     newRow.Cells.Add(ava)
-                    newRow.Cells.Add(but)
                     available_venue.Rows.Add(newRow)
                 Next
                 lblVenue.Text = numCourtsAvailable
             End If
         End If
         loadUserBookingCmd.Parameters.Clear()
-        loadUserBookingCmd.Parameters.AddWithValue("uid", PubVar.userId)
+        loadUserBookingCmd.Parameters.AddWithValue("uid", Session("UserID"))
 
         Dim adapter2 As SqlDataAdapter = New SqlDataAdapter(loadUserBookingCmd)
-            Dim ds2 As DataSet = New DataSet()
-            adapter2.Fill(ds2, "userBooking")
+        Dim ds2 As DataSet = New DataSet()
+        adapter2.Fill(ds2, "userBooking")
 
-            Dim dt2 As DataTable = ds2.Tables("userBooking")
+        Dim dt2 As DataTable = ds2.Tables("userBooking")
 
         If dt2.Rows.Count < 1 Then
             lblNoBooks.Visible = True
@@ -143,6 +134,15 @@ Public Class WebForm1
                 Dim user_venue As Integer = dr("court_id")
                 Dim schName As String = dr("school_name")
                 Dim booking_start As String = dr("booking_date_start")
+                If DateDiff("n", DateTime.Now, DateTime.Parse(booking_start)) < 0 Then
+                    MsgBox("Your booking: " + bookingId.ToString + " has already passed")
+                ElseIf DateDiff("n", DateTime.Now, DateTime.Parse(booking_start)) <= 30 Then
+                    MsgBox("Your booking, " + bookingId.ToString + " at: " + venueLoc.ToString + " starts in 30 minutes or less")
+                ElseIf DateDiff("n", DateTime.Now, DateTime.Parse(booking_start)) <= 60 Then
+                    MsgBox("Your booking, " + bookingId.ToString + " at: " + venueLoc.ToString + " starts in 1 hour or less")
+                ElseIf DateDiff("n", DateTime.Now, DateTime.Parse(booking_start)) <= 120 Then
+                    MsgBox("Your booking, " + bookingId.ToString + " at: " + venueLoc.ToString + " starts in 2 hour or less")
+                End If
                 Dim booking_end As String = dr("booking_date_end")
                 Dim payment_date As String = dr("payment_date")
                 Dim venloc As TableCell = New TableCell
@@ -171,7 +171,7 @@ Public Class WebForm1
         End If
         If Not IsPostBack Then
             cal_venue.SelectedDate = DateTime.Parse(Date.Now.ToString("dd/MM/yyyy"))
-            lbl_userId.Text = "Welcome, " + userName + ". Your id is: " + PubVar.userId.ToString
+            lbl_userId.Text = "Welcome, " + Session("UserName").ToString + ". Your id is: " + Session("UserID").ToString
         End If
     End Sub
 
@@ -183,20 +183,22 @@ Public Class WebForm1
     End Sub
 
     Protected Sub btn_logout_Click(sender As Object, e As EventArgs) Handles btn_logout.Click
-        Response.Redirect("Log_In_page.aspx")
+        Session("UserID") = Nothing
+        Session("UserName") = Nothing
+        Server.Transfer("Log_In_page.aspx")
     End Sub
 
 
     Protected Sub btn_booking_Click(sender As Object, e As EventArgs) Handles btn_booking.Click
-        Response.Redirect("BookingPage.aspx")
+        Server.Transfer("BookingPage.aspx")
     End Sub
 
     Protected Sub btn_edit_Click(sender As Object, e As EventArgs) Handles btn_edit.Click
-        Response.Redirect("Edit_booking.aspx")
+        Server.Transfer("Edit_booking.aspx")
     End Sub
 
     Protected Sub btn_delete_Click(sender As Object, e As EventArgs) Handles btn_delete.Click
-        Response.Redirect("Delete_booking.aspx")
+        Server.Transfer("Delete_booking.aspx")
     End Sub
 
     Protected Sub btn_check_Click(sender As Object, e As EventArgs) Handles btn_check.Click
@@ -307,5 +309,9 @@ Public Class WebForm1
             Next
             lblVenue.Text = numCourtsAvailable
         End If
+    End Sub
+
+    Protected Sub btn_snap_Click(sender As Object, e As EventArgs) Handles btn_snap.Click
+        Server.Transfer("SnapBooking.aspx")
     End Sub
 End Class

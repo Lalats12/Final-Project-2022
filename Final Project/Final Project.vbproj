@@ -98,8 +98,12 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="About_Us.aspx" />
     <Content Include="About_Us.html" />
     <Content Include="AdminPage\AdminBooking.aspx" />
+    <Content Include="AdminPage\AdminImage.aspx" />
+    <Content Include="AdminPage\AdminNewSchool.aspx" />
+    <Content Include="AdminPage\AdminResponse.aspx" />
     <Content Include="AdminPage\AdminSchool.aspx" />
     <Content Include="AdminPage\AdminUser.aspx" />
     <Content Include="AdminPage\AdminCourts.aspx" />
@@ -112,41 +116,77 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="BookingPage.aspx" />
-    <Content Include="ContratorPage.aspx" />
-    <Content Include="HMForgotName.aspx" />
-    <Content Include="HMForgotPass.aspx" />
-    <Content Include="HMRegister.aspx" />
+    <Content Include="CourtsImages.aspx" />
+    <Content Include="ForUsers.aspx" />
+    <Content Include="images\asdds_pg.png" />
+    <Content Include="images\asdga_pg.png" />
+    <Content Include="images\asstim_pg.png" />
+    <Content Include="images\astin_pg.png" />
     <Content Include="images\bg1.jpg" />
     <Content Include="images\facebook.png" />
     <Content Include="images\favicon.png" />
+    <Content Include="images\fdsgs_pg.png" />
+    <Content Include="images\gfdsg_pg.png" />
     <Content Include="images\gmail.png" />
+    <Content Include="images\hsnsn_pg.PNG" />
     <Content Include="images\instagram.png" />
     <Content Include="images\ms.jpg" />
     <Content Include="images\twitter.png" />
-    <Content Include="ManageCourts.aspx" />
     <Content Include="CreateSchool.aspx" />
     <Content Include="Delete_booking.aspx" />
     <Content Include="Edit_booking.aspx" />
     <Content Include="ForgotPass.aspx" />
     <Content Include="ForgotUser.aspx" />
     <Content Include="HMAdminLogin.aspx" />
+    <Content Include="JavaScript.js" />
     <Content Include="Log_In_Page.aspx" />
     <Content Include="main_page.aspx" />
+    <Content Include="Manage_User.aspx" />
+    <Content Include="NewUsers.aspx" />
     <Content Include="Register_page.aspx" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\jquery-3.6.0.slim.js" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
+    <Content Include="SnapBooking.aspx" />
     <Content Include="Starting_Page.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About_Us.aspx.designer.vb">
+      <DependentUpon>About_Us.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="About_Us.aspx.vb">
+      <DependentUpon>About_Us.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="AdminPage\AdminBooking.aspx.designer.vb">
       <DependentUpon>AdminBooking.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPage\AdminBooking.aspx.vb">
       <DependentUpon>AdminBooking.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="AdminPage\AdminImage.aspx.designer.vb">
+      <DependentUpon>AdminImage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPage\AdminImage.aspx.vb">
+      <DependentUpon>AdminImage.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="AdminPage\AdminNewSchool.aspx.designer.vb">
+      <DependentUpon>AdminNewSchool.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPage\AdminNewSchool.aspx.vb">
+      <DependentUpon>AdminNewSchool.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPage\AdminResponse.aspx.designer.vb">
+      <DependentUpon>AdminResponse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPage\AdminResponse.aspx.vb">
+      <DependentUpon>AdminResponse.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="AdminPage\AdminSchool.aspx.designer.vb">
@@ -176,7 +216,7 @@
     </Compile>
     <Compile Include="Admin_page.aspx.vb">
       <DependentUpon>Admin_page.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="BookingPage.aspx.designer.vb">
       <DependentUpon>BookingPage.aspx</DependentUpon>
@@ -185,47 +225,19 @@
       <DependentUpon>BookingPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ContratorPage.aspx.designer.vb">
-      <DependentUpon>ContratorPage.aspx</DependentUpon>
+    <Compile Include="CourtsImages.aspx.designer.vb">
+      <DependentUpon>CourtsImages.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ContratorPage.aspx.vb">
-      <DependentUpon>ContratorPage.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="HMForgotName.aspx.designer.vb">
-      <DependentUpon>HMForgotName.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="HMForgotName.aspx.vb">
-      <DependentUpon>HMForgotName.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="HMForgotPass.aspx.designer.vb">
-      <DependentUpon>HMForgotPass.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="HMForgotPass.aspx.vb">
-      <DependentUpon>HMForgotPass.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="HMRegister.aspx.designer.vb">
-      <DependentUpon>HMRegister.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="HMRegister.aspx.vb">
-      <DependentUpon>HMRegister.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="ManageCourts.aspx.designer.vb">
-      <DependentUpon>ManageCourts.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ManageCourts.aspx.vb">
-      <DependentUpon>ManageCourts.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+    <Compile Include="CourtsImages.aspx.vb">
+      <DependentUpon>CourtsImages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CreateSchool.aspx.designer.vb">
       <DependentUpon>CreateSchool.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreateSchool.aspx.vb">
       <DependentUpon>CreateSchool.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Delete_booking.aspx.designer.vb">
       <DependentUpon>Delete_booking.aspx</DependentUpon>
@@ -255,6 +267,13 @@
       <DependentUpon>ForgotUser.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="ForUsers.aspx.designer.vb">
+      <DependentUpon>ForUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ForUsers.aspx.vb">
+      <DependentUpon>ForUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="HMAdminLogin.aspx.designer.vb">
       <DependentUpon>HMAdminLogin.aspx</DependentUpon>
     </Compile>
@@ -276,8 +295,14 @@
       <DependentUpon>main_page.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Manage_User.aspx.designer.vb">
+      <DependentUpon>Manage_User.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_User.aspx.vb">
+      <DependentUpon>Manage_User.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Module1.vb" />
-    <Compile Include="HMVars.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -297,12 +322,26 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="NewUsers.aspx.designer.vb">
+      <DependentUpon>NewUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewUsers.aspx.vb">
+      <DependentUpon>NewUsers.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Register_page.aspx.designer.vb">
       <DependentUpon>Register_page.aspx</DependentUpon>
     </Compile>
     <Compile Include="Register_page.aspx.vb">
       <DependentUpon>Register_page.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="SnapBooking.aspx.designer.vb">
+      <DependentUpon>SnapBooking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SnapBooking.aspx.vb">
+      <DependentUpon>SnapBooking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Starting_Page.aspx.designer.vb">
       <DependentUpon>Starting_Page.aspx</DependentUpon>

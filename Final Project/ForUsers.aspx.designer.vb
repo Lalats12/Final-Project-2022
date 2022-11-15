@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class ContratorPage
+Partial Public Class ForUsers
 
     '''<summary>
     '''form1 control.
@@ -23,128 +23,92 @@ Partial Public Class ContratorPage
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''lbl_Welcome control.
+    '''txt_name control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_Welcome As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents txt_name As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''lbl_signSchool control.
+    '''txt_email control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_signSchool As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents txt_email As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''btn_signSchool control.
+    '''txt_nums control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_signSchool As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents txt_nums As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''pnl_school control.
+    '''txt_schoolName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pnl_school As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents txt_schoolName As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txt_school control.
+    '''txt_schoolAdd control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_school As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_schoolAdd As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txt_school_loc control.
+    '''txt_courtsNum control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_school_loc As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_courtsNum As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txt_invisible_loctag control.
+    '''drp_start_time control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_invisible_loctag As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents drp_start_time As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''chk_sameLoc control.
+    '''drp_close_time control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents chk_sameLoc As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents drp_close_time As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''txt_tag control.
+    '''txt_code control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_tag As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_code As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txt_schoolCourts control.
+    '''btn_enter control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_schoolCourts As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''btn_courts control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_courts As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btn_update control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_update As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btn_confirm control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_confirm As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btn_cancel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_cancel As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_enter As Global.System.Web.UI.WebControls.Button
 End Class

@@ -21,6 +21,8 @@
 &nbsp;
             <asp:Button ID="btn_searchTag" runat="server" Text="Search By tag" />
             <br />
+            <asp:Button ID="btn_addSchool" runat="server" Text="Add a school" />
+            <br />
             <br />
             <asp:Panel ID="pnl_listSchool" runat="server" Visible="False">
                 <asp:ListBox ID="lst_Schools" runat="server" Height="167px" Width="198px" AutoPostBack="True"></asp:ListBox>
@@ -39,13 +41,10 @@
                 School Tag:<br />
                 <asp:TextBox ID="txt_searchTag" runat="server"></asp:TextBox>
                 <br />
-                <asp:Button ID="btn_byTag" runat="server" Text="cs" />
+                <asp:Button ID="btn_byTag" runat="server" Text="Search" />
             </asp:Panel>
             <br />
             <asp:Panel ID="Panel1" runat="server" Visible="False">
-                HM ID:<br />
-                <asp:TextBox ID="txt_IDHM" runat="server"></asp:TextBox>
-                <br />
                 School ID:<br />
                 <asp:TextBox ID="txt_ID" runat="server" Enabled="False"></asp:TextBox>
                 <br />
@@ -62,6 +61,24 @@
                 <br />
                 <asp:TextBox ID="txt_tag" runat="server"></asp:TextBox>
                 <br />
+                Image:<br />
+                <asp:Image ID="img_school" runat="server" Height="143px" Width="155px" />
+                <br />
+                <br />
+                <asp:Button ID="btn_changeImg" runat="server" Text="Change Image" />
+                <br />
+                Headmaster ID:<br />
+                <asp:TextBox ID="txt_hmID" runat="server" Enabled="False"></asp:TextBox>
+                <br />
+                Headmaster&#39;s name:<br />
+                <asp:TextBox ID="txt_hmname" runat="server"></asp:TextBox>
+                <br />
+                Headmaster&#39;s email:<br />
+                <asp:TextBox ID="txt_hmEmail" runat="server"></asp:TextBox>
+                <br />
+                Headmaster&#39;s phone:<br />
+                <asp:TextBox ID="txt_HMphone" runat="server"></asp:TextBox>
+                <br />
                 <asp:Button ID="btn_update" runat="server" Text="Update" />
                 &nbsp;
                 <asp:Button ID="btn_delete" runat="server" Text="Delete" />
@@ -69,6 +86,7 @@
                 <asp:Button ID="btn_refresh" runat="server" Text="Reset search" />
             </asp:Panel>
             <br />
+            <asp:Button ID="btn_main_menu" runat="server" Text="Return to Main menu" />
             <br />
 
         </div>

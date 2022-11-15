@@ -21,8 +21,6 @@
             <br />
             <asp:Button ID="btn_del" runat="server" Text="Delete" />
             <asp:Button ID="btn_mainMenu" runat="server" Text="Return to main " />
-        &nbsp;
-            <asp:Label ID="lbl_Test" runat="server" Text="Label"></asp:Label>
         </div>
         <div>
         </div>

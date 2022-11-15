@@ -57,4 +57,22 @@ Partial Public Class Admin_page
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_courts As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btn_feedback control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_feedback As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btn_newSchool control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_newSchool As Global.System.Web.UI.WebControls.Button
 End Class

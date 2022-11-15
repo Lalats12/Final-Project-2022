@@ -57,13 +57,4 @@ Partial Public Class HMAdminLogin
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_login As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btn_resigter control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_resigter As Global.System.Web.UI.WebControls.Button
 End Class

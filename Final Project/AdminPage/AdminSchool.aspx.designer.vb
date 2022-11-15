@@ -50,6 +50,15 @@ Partial Public Class AdminSchool
     Protected WithEvents btn_searchTag As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''btn_addSchool control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_addSchool As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''pnl_listSchool control.
     '''</summary>
     '''<remarks>
@@ -140,15 +149,6 @@ Partial Public Class AdminSchool
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''txt_IDHM control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_IDHM As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''txt_ID control.
     '''</summary>
     '''<remarks>
@@ -194,6 +194,60 @@ Partial Public Class AdminSchool
     Protected WithEvents txt_tag As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''img_school control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents img_school As Global.System.Web.UI.WebControls.Image
+
+    '''<summary>
+    '''btn_changeImg control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_changeImg As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''txt_hmID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_hmID As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_hmname control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_hmname As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_hmEmail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_hmEmail As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_HMphone control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_HMphone As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''btn_update control.
     '''</summary>
     '''<remarks>
@@ -219,4 +273,13 @@ Partial Public Class AdminSchool
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_refresh As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btn_main_menu control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_main_menu As Global.System.Web.UI.WebControls.Button
 End Class

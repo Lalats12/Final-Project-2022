@@ -35,15 +35,14 @@ Public Class Log_In_Page
             MsgBox("Username/password is incorrect.")
         Else
             Dim dr As DataRow = dt.Rows(0)
-            MsgBox("Welcome, " + userName)
-            PubVar.userId = dr("user_id")
-            PubVar.userName = dr("userName")
-            Response.Redirect("main_page.aspx")
+            Session("UserID") = dr("user_id")
+            Session("UserName") = dr("userName").ToString
+            Server.Transfer("main_page.aspx")
         End If
     End Sub
 
     Protected Sub btn_register_Click(sender As Object, e As EventArgs) Handles btn_register.Click
-        Response.Redirect("Register_page.aspx")
+        Server.Transfer("Register_page.aspx")
     End Sub
 
 

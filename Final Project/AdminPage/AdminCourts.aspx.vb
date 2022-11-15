@@ -13,6 +13,9 @@ Public Class SchoolCourts
     Dim deleteCourtsCmd As SqlCommand
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Session("IsAdmin") Is Nothing Then
+            Server.Transfer("../Starting_Page.aspx")
+        End If
         Dim connStr As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\jpyea\source\repos\Final Project\Final Project\App_Data\badminton_database.mdf"";Integrated Security=True"
         conn = New SqlConnection(connStr)
         conn.Open()
@@ -25,7 +28,7 @@ Public Class SchoolCourts
                                        WHERE school_tag = @tag"
         loadCourtsCmd = New SqlCommand(loadCourtsSql, conn)
 
-        Dim loadAvaSql As String = "SELECT status
+        Dim loadAvaSql As String = "SELECT status, time_open, time_close
                                     FROM Court 
                                     WHERE court_id = @id"
         loadAvaCmd = New SqlCommand(loadAvaSql, conn)
@@ -72,7 +75,38 @@ Public Class SchoolCourts
                     drp_schools.Items.Add(strJoin)
                     drp_schools.Items.Item(i + 1).Value = schTag
                 Next
+                If Not AdminVars.schoolTag = "" Then
+                    drp_schools.Text = AdminVars.schoolTag
+                    loadCourt()
+                End If
             End If
+        End If
+    End Sub
+
+    Protected Sub loadCourt()
+        Dim tag As String = drp_schools.SelectedValue
+
+        loadCourtsCmd.Parameters.Clear()
+        loadCourtsCmd.Parameters.AddWithValue("tag", tag)
+
+        Dim adap As SqlDataAdapter = New SqlDataAdapter(loadCourtsCmd)
+        Dim ds As DataSet = New DataSet
+        adap.Fill(ds, "courts")
+        Dim dt As DataTable = ds.Tables("courts")
+
+        If dt.Rows.Count < 1 Then
+            MsgBox("Error on dt rows. Either empty or another error")
+        Else
+            drp_courts.Items.Clear()
+            drp_courts.Items.Add("(select)")
+            For i As Integer = 0 To dt.Rows.Count - 1
+                Dim dr As DataRow = dt.Rows(i)
+                Dim courtId As Integer = dr("court_id")
+                Dim status As String = dr("school_id")
+                Dim strJoin As String = "Court ID: " + courtId.ToString
+                drp_courts.Items.Add(strJoin)
+                drp_courts.Items.Item(i + 1).Value = courtId
+            Next
         End If
     End Sub
 
@@ -136,7 +170,7 @@ Public Class SchoolCourts
             MsgBox("Error related to updating the data")
         Else
             MsgBox("Success updating")
-            Response.Redirect("AdminCourts.aspx")
+            Server.Transfer("AdminCourts.aspx")
         End If
 
     End Sub
@@ -157,11 +191,20 @@ Public Class SchoolCourts
         Else
             Dim dr As DataRow = dt.Rows(0)
             Dim ava As Integer = dr("status")
+            Dim timeOpen As String = dr("time_open").ToString.Substring(0, 2)
+            Dim timeClose As String = dr("time_close").ToString.Substring(0, 2)
+
             drp_availa.Text = ava
+            drp_start_time.Text = timeOpen
+            drp_end_time.Text = timeClose
         End If
     End Sub
 
     Protected Sub btn_delete_Click(sender As Object, e As EventArgs) Handles btn_delete.Click
+        If drp_courts.SelectedIndex = 0 Then
+            MsgBox("You must select an court")
+        End If
+
         Dim court As Integer = drp_courts.SelectedValue
 
         checkCourtsCmd.Parameters.Clear()
@@ -173,10 +216,8 @@ Public Class SchoolCourts
         Dim dt As DataTable = ds.Tables("courts")
 
         If dt.Rows.Count > 0 Then
-            Dim userRe2 As Integer = MsgBox("Have you warned the users before removing the court?", vbQuestion + vbYesNo + vbDefaultButton2, "Confirmation")
-            If userRe2 = vbNo Then
-                Exit Sub
-            End If
+            MsgBox("There are bookings made with this court")
+            Exit Sub
         End If
 
         Dim userRe As Integer = MsgBox("Are you sure?", vbQuestion + vbYesNo + vbDefaultButton2, "Confirmation")
@@ -220,7 +261,7 @@ Public Class SchoolCourts
                 MsgBox("Error related to rowsAff2")
             Else
                 MsgBox("Success, refreshing")
-                Response.Redirect("AdminCourts.aspx")
+                Server.Transfer("AdminCourts.aspx")
             End If
         End If
 
@@ -232,6 +273,12 @@ Public Class SchoolCourts
 
         Dim timeStart As DateTime = DateTime.Parse(drp_start_time.SelectedValue + ": 00")
         Dim timeEnd As DateTime = DateTime.Parse(drp_end_time.SelectedValue + ": 00")
+
+        MsgBox(DateDiff("h", timeStart, timeEnd))
+
+        If DateDiff("h", timeStart, timeEnd) < 1 Then
+            MsgBox("the time to end is more than time to start")
+        End If
 
         Dim adap As SqlDataAdapter = New SqlDataAdapter(getSchoolIdCmd)
         Dim ds As DataSet = New DataSet
@@ -269,8 +316,12 @@ Public Class SchoolCourts
                 MsgBox("Error related to updaing school nums")
             Else
                 MsgBox("Added successfully")
-                Response.Redirect("AdminCourts.aspx")
+                Server.Transfer("AdminCourts.aspx")
             End If
         End If
+    End Sub
+
+    Protected Sub btn_main_menu_Click(sender As Object, e As EventArgs) Handles btn_main_menu.Click
+        Server.Transfer("../Admin_page.aspx")
     End Sub
 End Class

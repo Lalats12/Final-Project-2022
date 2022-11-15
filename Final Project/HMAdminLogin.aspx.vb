@@ -16,11 +16,6 @@ Public Class HMAdminLogin
     End Sub
 
 
-
-    Protected Sub btn_resigter_Click(sender As Object, e As EventArgs) Handles btn_resigter.Click
-        Response.Redirect("HMRegister.aspx")
-    End Sub
-
     Protected Sub btn_login_Click(sender As Object, e As EventArgs) Handles btn_login.Click
         Dim userName As String = txt_username.Text
         Dim userPass As String = txt_pass.Text
@@ -39,16 +34,8 @@ Public Class HMAdminLogin
         Else
             Dim dr As DataRow = dt.Rows(0)
             MsgBox("Welcome, " + userName)
-            HMVars.HM_id = dr("hm_id")
-            HMVars.HM_name = dr("hm_username")
-            If dr("role") = "Admin" Then
-                Response.Redirect("Admin_page.aspx")
-            ElseIf dr("role") = "counciler" Then
-                Response.Redirect("ContratorPage.aspx")
-                If Not IsDBNull(dr("school_id")) Then
-                    HM_school = dr("school_id")
-                End If
-            End If
+            Session("IsAdmin") = True
+            Server.Transfer("Admin_page.aspx")
         End If
     End Sub
 End Class

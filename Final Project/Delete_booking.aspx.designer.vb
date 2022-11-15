@@ -48,13 +48,4 @@ Partial Public Class Delete_booking
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_mainMenu As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''lbl_Test control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_Test As Global.System.Web.UI.WebControls.Label
 End Class

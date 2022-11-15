@@ -41,6 +41,15 @@ Partial Public Class BookingPage
     Protected WithEvents drp_school As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Panel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''drp_court control.
     '''</summary>
     '''<remarks>
@@ -48,6 +57,24 @@ Partial Public Class BookingPage
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents drp_court As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''lbl_courtStat control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_courtStat As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''tbl_books control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tbl_books As Global.System.Web.UI.WebControls.Table
 
     '''<summary>
     '''cal_booking_date control.
@@ -174,13 +201,4 @@ Partial Public Class BookingPage
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_return As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''lbl_results control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_results As Global.System.Web.UI.WebControls.Label
 End Class

@@ -9,6 +9,16 @@
         .auto-style1 {
             text-align: center;
         }
+        .tables{
+            border:1px solid black;
+            border-collapse:collapse;
+        }
+        tr:not(:last-child){
+            border-bottom: 1px solid black;
+        }
+        td{
+            border-right: 1px solid black;
+        }
     </style>
 </head>
 <body>
@@ -58,6 +68,10 @@
                 <asp:DropDownList ID="drp_courts" runat="server" AutoPostBack="True">
                 </asp:DropDownList>
                 <br />
+                <br />
+                <asp:Label ID="lbl_courtStat" runat="server" Text="Bookings made with this court" Visible="False"></asp:Label>
+                <asp:Table ID="tbl_books" runat="server" Visible="False">
+                </asp:Table>
                 <br />
                 Booking date:<br />
                 <asp:Calendar ID="cal_Booking_date" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
@@ -150,6 +164,7 @@
                 <asp:Button ID="btn_update" runat="server" Text="Update" />
                 &nbsp;<asp:Button ID="btn_delete" runat="server" Text="Delete" />
                 &nbsp;<asp:Button ID="btn_research" runat="server" Text="Restart the searching" />
+                &nbsp;<asp:Button ID="btn_main_menu" runat="server" Text="Return to Main menu" />
                 <br />
                 <br />
             </asp:Panel>

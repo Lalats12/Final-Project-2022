@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class HMForgotName
+Partial Public Class AdminResponse
 
     '''<summary>
     '''form1 control.
@@ -23,38 +23,47 @@ Partial Public Class HMForgotName
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''txt_email control.
+    '''drp_idlst control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_email As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents drp_idlst As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''txt_phone control.
+    '''txt_name control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_phone As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_name As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''btn_send control.
+    '''txt_response control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_send As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents txt_response As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''btn_menu control.
+    '''btn_delete control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_menu As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_delete As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btn_main_menu control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_main_menu As Global.System.Web.UI.WebControls.Button
 End Class
